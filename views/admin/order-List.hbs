@@ -1,0 +1,152 @@
+<h4 class="fw-bold py-2 mb-4 px-4"><span class="text-muted fw-bold">/ ORDER LIST
+  </span>
+</h4>
+
+<!-- Hoverable Table rows -->
+<div class="card">
+  <div class="table-responsive text-nowrap">
+
+    <table class="table table-hover">
+      <thead class="text-center">
+        <tr>
+          <th>#</th>
+          <th>Client</th>
+          {{! <th>Date</th> }}
+
+          <th>Date</th>
+          <th>Phone</th>
+          <th>Payment</th>
+          <th>TotalAmount</th>
+          <th>Status</th>
+          <th>Action</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-border-bottom-0 text-center">
+        {{#each AllOrders}}
+          <tr>
+            <th scope="row">{{math @index "+" 1}}</th>
+            {{! in app.engine this is used to use all kinds of 'math' operations }}
+
+            <td><span class="text-capitalize"><strong
+                >{{this.deliveryDetails.Firstname}}</strong></span></td>
+            {{!-- <td>{{this.dateOfOrder}}</td> --}}
+
+            <td> {{this.DateMod}}</td>
+            <td>{{this.deliveryDetails.Phone}}</td>
+            <td>{{this.paymentMethod}}</td>
+            <td>{{this.TotalAmount}}</td>
+            <td id="adminOrder">{{this.Orderstatus}}</td>
+            <td><button class="btn btn-dark text-muted">view</button></td>
+
+            <td>
+              {{! cancel button }}
+              <!-- Icon Dropdown -->
+
+              {{!-- <div class="">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-dark btn-icon rounded-pill dropdown-toggle hide-arrow"
+                    data-bs-toggle="dropdown"
+                    data-hover="dropdown"
+                  >
+                    <i class="bx bx-dots-vertical-rounded text-secondary"></i>
+                  </button> --}}
+              <select class="form-select" id="floatingSelect" 
+               onchange="changeAdminOrderStatus(value,'{{this._id}}')" >
+                    {{!-- default option --}}
+                    <option id="selected"  value="{{this.Orderstatus}}"> {{this.Orderstatus}} </option>
+                    {{! when the orderstatus is cancelled, then the manage option will only have}}
+                    {{#isEqual this.Orderstatus "cancelled"}}
+                      {{! nothing should display }}
+                    {{/isEqual}}
+
+                    {{#isEqual this.Orderstatus "delivered"}}
+                      {{! nothing should display }}
+                    {{/isEqual}}
+
+                    {{#isEqual this.Orderstatus "returned"}}
+                      {{! nothing should display }}
+                    {{/isEqual}}
+
+                    {{#isEqual this.Orderstatus "placed"}}
+                      <option value="shipped" class="dropdown-item text-info">shipped</option>
+                      <option value="on The Way" class="dropdown-item text-info">on the way</option>
+                      <option value="delivered" class="dropdown-item text-info">delivered</option>
+                      <option value="cancelled" class="dropdown-item text-info">cancelled</option>
+                    {{/isEqual}}
+
+                    {{#isEqual this.Orderstatus "shipped"}}
+                      <option value="on The Way" class="dropdown-item text-info">on the way</option>
+                      <option value="delivered" class="dropdown-item text-info">delivered</option>
+                      <option value="cancelled" class="dropdown-item text-info">cancelled</option>
+                    {{/isEqual}}
+
+                    {{#isEqual this.Orderstatus "on The Way"}}
+
+                      <option value="delivered" class="dropdown-item text-info">delivered</option>
+                      <option value="cancelled" class="dropdown-item text-info">cancelled</option>
+                    {{/isEqual}}
+
+                {{!-- </div>
+              </div> --}}
+
+              {{! ------------------------- }}
+              {{! <div class="dropdown">
+  <button class="btn btn-primary  rounded-pill  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   <i class="bx bx-dots-vertical-rounded"></i> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li class="dropdown">
+      <a href="#">One more dropdown</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        
+       
+       </ul>
+    </li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div> }}
+              <!--/ Icon Dropdown -->
+              {{! / }}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--/ Hoverable Table rows -->
+
+
+
+{{!-- change status  --}}
+
+<script>
+function changeAdminOrderStatus(changedstatus,orderId){
+ console.log(changedstatus)
+  $.ajax({
+    url:'/admin/change-delivery-status',
+    method:'post',
+    
+    data:{
+      changedstatus:changedstatus,
+      orderId: orderId
+    },
+    
+    success:(response)=>{
+      if(response){
+       location.reload()
+      }
+    }
+  })
+
+};
+
+</script>

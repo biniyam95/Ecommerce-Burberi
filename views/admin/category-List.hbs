@@ -1,0 +1,36 @@
+<h4 class="fw-bold py-2 mb-4 px-4"><span class="text-muted fw-bold">/ CATEGORY LIST </span> </h4>
+
+            <button class="btn btn-dark float-end " style="border-radius:60px"><a href="/admin/add-category" class="text-secondary"><i class="fa-solid fa-plus"></i></a></button>
+
+                   <!-- Hoverable Table rows -->
+              <div class="card">
+                
+                <div class="table-responsive text-nowrap">
+
+                  <table class="table table-hover">
+                    <thead class="text-center">
+                      <tr>
+                        <th>#</th>                        
+                        <th>Name</th>
+                        
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0 text-center">
+                      {{#each AllCategs}}
+                      <tr>
+                        <th scope="row">{{math @index '+' 1}}</th>
+                        
+                        <td><i class=""></i> <strong>{{this.categoryName}}</strong></td> 
+                        <td> 
+                            <button class="btn btn-dark"><a href="/admin/edit-category/{{this._id}}" class="text-secondary" ><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button class="btn btn-dark"><a href="/admin/delete-category/{{this._id}}" class="text-secondary" onclick="return confirm('confirm delete item {{this.categoryName}} ')"><i class="fa-solid fa-trash-can"></i></a></button>
+                        </td>     
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--/ Hoverable Table rows -->   
+                        

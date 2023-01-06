@@ -1,0 +1,68 @@
+
+
+
+
+
+    
+              <h4 class="fw-bold py-2 mb-4 px-4"><span class="text-muted fw-bold">/ CART LIST </span> </h4>
+      
+
+
+  <!-- Hoverable Table rows -->
+              <div class="card">
+                
+                <div class="table-responsive text-nowrap">
+
+
+                    
+
+                  <table class="table table-hover">
+                    <thead class="text-center">
+                      <tr>
+                        <th>#</th>
+                        <th>Customer Id</th>
+                        <th>Card Id</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0 text-center">
+                      {{!-- {{#each fetchedProductf}} --}}
+                      <tr>
+                        {{#each AllCarts}}
+                        <th scope="row">{{math @index '+' 1}}</th>
+                     
+                        <td><i class=""></i> <strong>{{this.user}}</strong></td> 
+                        <td>{{this._id}}</td>
+                         
+                        {{/each}} 
+                        
+                      </tr>
+                      {{!-- {{/each}} --}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+ <!--/ Hoverable Table rows -->  
+
+              
+ 
+            </div>
+            <!-- / Content -->
+
+            {{>admin-footer}}
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+   
+
+  

@@ -1,0 +1,40 @@
+
+
+
+
+
+                    <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    <div class="card-header ">
+                      <h5 class="mb-0" style="">New Category</h5>
+                      
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                     
+                      {{!-- form --}}
+                      <form action="/admin/add-category" method="post" >
+                    
+
+                        {{!-- name --}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 " for="">Category Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder=""/>
+                          </div>
+                        </div>
+                        
+
+                        {{!-- submit --}}
+                        <div class="row justify-content-center">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary text-white">Add</button>
+                            <button class="btn btn-secondary" ><a href="/admin/category-List" class="text-white" >Cancel</a></button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              <!--/ Basic layout -->
+

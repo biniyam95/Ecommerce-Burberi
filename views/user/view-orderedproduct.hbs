@@ -1,0 +1,105 @@
+
+
+
+<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg" >
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Juicy Flavors</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+  {{!--  --}}
+
+  <div class="container py-5">
+  {{!-- <!-- For Demo Purpose-->
+  <header class="text-center mb-5">
+    <h1 class="display-4 font-weight-bold">Bootstrap Cards</h1>
+    <p class="font-italic text-muted mb-0">An awesome Bootstrap 4 cards collection with variant content.</p>
+    <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
+        <u>Bootstrapious</u></a>
+    </p>
+  </header> --}}
+
+
+  <!-- First Row [Prosucts]-->
+  <h2 class="font-weight-bold mb-2">Ordered Product</h2>
+  <p class="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+
+  <div class="row pb-5 mb-4">
+     {{#each orderedProducts}}
+    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+      <!-- Card-->
+     
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4 text-center"><img src="/product-images/{{this.final_slicedOrderProduct.prodImage1}}" alt="" class="img-fluid d-block mx-auto mb-3">
+          <h5> <a href="#" class="text-dark">{{this.final_slicedOrderProduct.prodName}}</a></h5>
+                    <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+          <p class="product-price">&#8377;{{this.final_slicedOrderProduct.price}} </p>
+
+          <ul class="list-inline small">
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    {{/each}}
+    </div>
+    </div>
+
+   
+
+    
+
+      
+
+     
+
+    
+
+
+
+
+
+{{!--  --}}
+
+   <!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="../../user-asset/assets/img/company-logos/1.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="../../user-asset/assets/img/company-logos/2.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="../../user-asset/assets/img/company-logos/3.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="../../user-asset/assets/img/company-logos/4.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="../../user-asset/assets/img/company-logos/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->

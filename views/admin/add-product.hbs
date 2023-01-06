@@ -1,0 +1,126 @@
+
+
+
+
+
+                    <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    <div class="card-header ">
+                      <h5 class="mb-2 " style="">New Product</h5>
+                      
+                    </div>
+                    <div class="card-body d-flex align-items-center ">
+                     
+                      {{!-- form --}}
+                      <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+                        
+                        {{!-- image main--}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">
+                            Image 1<img src="/product-images/{{aProduct.prodImage1}}"   id="imageId5"  alt="" style="height:30px ;margin-left: 2px;"></label>
+                          <div class="col-sm-9">
+                            
+                            <input type="file" class="form-control" name="prodImage1" id="prodImage1" value="/product-images/{{aProduct.prodImage1}}"  onchange="viewchangedImage1(event)" />
+                          </div>
+                        </div>
+                           {{!-- image sub--}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info " for="">
+                            Image 2 <img src="/product-images/{{aProduct.prodImage2}}"   id="imageId6"  alt="" style="height:30px ;margin-left: 2px;"></label>
+                          <div class="col-sm-9">
+                            <input type="file" class="form-control" name="prodImage2" id="prodImage2" value="/product-images/{{aProduct.prodImage2}}"  onchange="viewchangedImage2(event)"   />
+                          </div>
+                        </div>
+                        {{!-- image sub--}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info " for="">
+                            Image 3<img src="/product-images/{{aProduct.prodImage3}}"   id="imageId7"  alt="" style="height:30px ;margin-left: 2px;"></label>
+                          <div class="col-sm-9">
+                            <input type="file" class="form-control" name="prodImage3" id="prodImage3" value="/product-images/{{aProduct.prodImage3}}"  onchange="viewchangedImage3(event)" />
+                          </div>
+                        </div>
+                           {{!-- image sub--}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info " for="">
+                            Image 4<img src="/product-images/{{aProduct.prodImage4}}"   id="imageId8"  alt="" style="height:30px ;margin-left: 2px;"></label>
+                          <div class="col-sm-9">
+                            <input type="file" class="form-control" name="prodImage4" id="prodImage4" value="/product-images/{{aProduct.prodImage4}}"  onchange="viewchangedImage4(event)"   />
+                          </div>
+                        </div>
+
+                        {{!-- name --}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="prodName" id="prodName" placeholder=""/>
+                          </div>
+                        </div>
+                        
+                        {{!-- category --}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">Category</label> 
+
+                                           {{!-- category input --}}
+                          <div class="col-sm-9">
+                          
+                          <select class="form-control form-select" name="categName" >
+                             {{#each AllCategs}}
+                              <option  value="{{this.categoryName}}">{{this.categoryName}}</option>
+                            {{/each}}
+                          </select>
+                              
+
+                          
+                          </div>
+                        </div>
+
+                        {{!-- price --}}
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">Price</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="price" id="price" placeholder=""/>
+                          </div>
+                        </div>
+
+                        {{!-- stock --}}
+
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">Stock</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="stock" id="stock" placeholder=""/>
+                          </div>
+                        </div>
+
+                        {{!-- submit --}}
+                        <div class="row justify-content-center">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary text-white">Add</button>
+                            <button class="btn btn-secondary" ><a href="/admin/product-List" class="text-white" >Cancel</a></button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              <!--/ Basic layout -->
+
+
+
+<script>
+ 
+         
+         function viewchangedImage5(event){
+          document.getElementById("imageId5").src=URL.createObjectURL(event.target.files[0])
+         }
+         function viewchangedImage6(event){
+          document.getElementById("imageId6").src=URL.createObjectURL(event.target.files[0])
+         }
+         function viewchangedImage7(event){
+          document.getElementById("imageId7").src=URL.createObjectURL(event.target.files[0])
+         }
+         function viewchangedImage8(event){
+          document.getElementById("imageId8").src=URL.createObjectURL(event.target.files[0])
+         }
+  
+</script>

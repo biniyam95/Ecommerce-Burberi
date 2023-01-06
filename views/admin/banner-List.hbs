@@ -1,0 +1,174 @@
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Banner Management</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/admin-home">Home</a></li>
+                <li class="breadcrumb-item active"> Banner List</i></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+
+
+
+    <section class="section">
+       {{!--  <div>
+              <a href="/admin/add-banner" class="btn btn-primary btn-sm">Add New</a></p>
+
+        </div> --}}
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#bannerForm1">
+                Add New
+            </button>
+        <hr>
+        <div class="row ">
+            {{#each banners}}
+            <div class=" col-md-8 card mb-3 ">
+                <img class="card-img-top" src="/product-images/{{this.bannerImg1}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.bannerTitle}}</h5>
+                    <p class="card-text">{{this.bannerDescription}}</p>
+                    <p class="card-text">{{ this.dateAdded}}</p>
+
+                    {{!-- <a class="btn btn-info btn-sm text-white" href="/admin/edit-banner/{{this._id}}">Edit this banner</a> --}}
+                     <button type="button" class="btn btn-info btn-sm text-white "
+                      data-bs-toggle="modal" data-bs-target="#bannerEditForm{{this._id}}" >
+                      {{!-- <i class="bi bi-pencil-square ">Edit</i> --}}
+                       Edit <i class="fa-solid fa-pen-to-square"></i></button>
+
+                    <button class="btn btn-danger btn-sm text-white" onclick="deleteBanner('{{this._id}}')">Delete <i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+            {{/each }}
+
+        </div>
+    </section>
+
+
+{{!--   add triggger modal  --}}    
+<div class="modal fade" id="bannerForm1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog d-flex justify-content-center">
+            <div class="modal-content w-75">
+                <div class="modal-header " style="background-color: rgb(82, 113, 127);">
+                    <h5 class="modal-title" id="exampleModalLabel1" style="color:white;">Add new Banner</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color:rgb(228, 72, 72);"></button>
+                </div>
+                <div class="modal-body p-4">
+       
+        {{!--  banner add form --}}
+                    <form class="row g-3" action="/admin/add-banner" method="post" enctype="multipart/form-data">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input name="bannerTitle" type="text" class="form-control" id="floatingName"
+                                        placeholder="Title">
+                                    <label for="floatingName">Banner Title</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea name="bannerDescription" class="form-control" placeholder="Description" id="floatingTextarea" style="height: 100px;"></textarea>
+                                    <label for="floatingTextarea">Banner Description</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-5">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Banner Image</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="file" name="bannerImg1" id="formFile" accept="image/*" required>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                {{!--<button class="btn btn-primary">Back</button>--}}                            
+                            </div>
+
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- MODAL EDIT BANNER FORM --}}
+{{#each banners}}
+    <div class="modal fade" id="bannerEditForm{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog d-flex justify-content-center">
+            <div class="modal-content w-75">
+                <div class="modal-header " style="background-color: rgb(82, 113, 127);">
+                    <h5 class="modal-title" id="exampleModalLabel1" style="color:white;">Edit Banner</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color:rgb(228, 72, 72);"></button>
+                </div>
+                <div class="modal-body p-4">
+       
+        {{!--  banner add form --}}
+                    <form class="row g-3" action="/admin/edit-banner" method="post" enctype="multipart/form-data">
+                            <div class="col-md-12">
+                                <input type="text" name="id" value="{{this._id}}" hidden>
+                                <div class="form-floating">
+                                    <input name="bannerTitle" type="text" class="form-control" id="floatingName"
+                                        placeholder="Title" value="{{this.bannerTitle}}">
+                                    <label for="floatingName">Banner Title</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea name="bannerDescription" class="form-control" placeholder="Description" id="floatingTextarea" style="height: 100px;" >{{this.bannerDescription}}</textarea>
+                                    <label for="floatingTextarea">Banner Description</label>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-5">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Banner Image</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="file" name="bannerImg1" id="formFile" accept="image/*">
+
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                {{!--<button class="btn btn-primary">Back</button>--}}                            
+                            </div>
+
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+</main><!-- End #main -->
+
+<script>
+
+
+    function deleteBanner(bannerId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/admin/delete-banner/'+bannerId,
+                    success(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your Banner has been deleted.',
+                            'success'
+                        )
+                        location.reload()
+                    }
+                })
+
+            }
+        })
+
+    }
+</script>

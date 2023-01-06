@@ -1,0 +1,244 @@
+<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg" >
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Juicy Flavors</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+  <!-- cart --> 
+  {{!-- this is where you can only give one slot and probly aggregate has to be used --}}
+	<div class="cart-section mt-80 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-remove"></th>
+									<th class="product-image text-info">Product Image</th>
+									<th class="product-image text-info">Name</th>
+									<th class="product-image text-info">Category</th>
+									<th class="product-image text-info">Price</th>
+									<th class="product-image text-info">Quantity</th>
+									<th class="product-image text-info">Stock</th>
+
+									<th class="product-image text-info">SubTotal</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-body-row">
+									{{#each cartProducts}}
+									<td class="product-remove">
+									       <i class="far fa-window-close" onclick="removeCartProduct('{{this._id}}','{{this.prodItem}}')" style="color:rgb(255, 65, 65);background-color:white;"></i>
+									</td>
+										
+										<td class="product-image"><img src="/product-images/{{this.final_slicedProduct.prodImage1}}" alt=""></td>
+										<td class="product-name">{{this.final_slicedProduct.prodName}}</td>
+										<td class="product-category">{{this.final_slicedProduct.categName}}</td>
+										<td class="product-price" >&#8377;<span id="{{this.final_slicedProduct.prodImage1}}">{{this.final_slicedProduct.price}}</span></td>
+									
+									<td class="product-quantity">
+											
+											<button onclick="changeQuantity( '{{this._id}}','{{this.final_slicedProduct._id}}', '{{../USERid}}','{{this.final_slicedProduct.prodName}}','{{this.final_slicedProduct.prodImage1}}' ,- 1 ) "    
+											                                                                                        style="border-radius: 8px;width:24px;border-style: none;margin-right: 15px;color:orange;background-color: rgb(104, 93, 93);">-</button> 
+									       
+												 <div class="btn btn-light" style="border:2px solid;"><span class="text-dark font-weight-bold" id="{{this.final_slicedProduct._id}}">   {{this.quantity}}    </span> </div>
+												 
+									    <button onclick="changeQuantity( '{{this._id}}','{{this.final_slicedProduct._id}}','{{../USERid}}','{{this.final_slicedProduct.prodName}}','{{this.final_slicedProduct.prodImage1}}', 1 ) " 
+									                                                                                       style="border-radius: 8px;width:24px;border-style: none;margin-left: 15px;color:orange;background-color: rgb(104, 93, 93);">+</button></td>
+              {{!-- stock	Status --}}	
+							 {{#isEqual this.final_slicedProduct.stock 0 }}
+									<td><span class="text-danger">Out of Stock</span></td>  
+							 {{/isEqual}}
+							 {{#isGreater this.final_slicedProduct.stock 5}}		
+                  <td><span class="text-success">In Stock</span></td>
+               {{/isGreater}}
+							 {{#isLesser this.final_slicedProduct.stock 5 0}} 
+									Only <td><span class="text-danger">{{../this.final_slicedProduct.stock}}</span> <span style="color: rgb(169,169,169);"> Left</span>  </td>				
+							 {{/isLesser}}
+
+									<td > <span id="{{this.final_slicedProduct.prodName}}">{{this.final_slicedProduct.price}}</span></td>
+								</tr>
+
+								{{/each}}
+								
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>Total</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+								{{#if stockErr}}
+						<span class="text-danger">{{stockErr}}</span>
+						{{/if}}	
+							<tbody>
+								
+								<tr class="total-data">
+									<td><strong>Total: </strong></td>
+									<td>&#8377;
+										<span id="sub">{{totalValue}}</span></td>
+								</tr>
+
+								<tr class="total-data">
+									<td><strong>Shipping: </strong></td>
+									<td>&#8377;0</td>
+								</tr>
+
+								<tr class="total-data">
+									<td><strong>GrandTotal: </strong></td>
+									  <td> &#8377;
+										<span id="grandTotal">{{totalValue}}</span>
+										</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<a href="/shop-all" class="boxed-btn black ml-5">Update Cart</a>
+							<a href="/place-order" class="boxed-btn black ">Place Order</a>
+						</div>
+					</div>
+
+					{{!-- <div class="coupon-section">
+						<h3>Apply Coupon</h3>
+						<div class="coupon-form-wrap">
+							<form action="">
+								<p><input type="text" placeholder="Coupon" name="couponCode" id="couponDiscount"></p>
+								<p><input type="submit" value="Apply"></p>
+							</form>
+						</div>
+					</div> --}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->
+
+   
+<script>
+
+function changeQuantity(cartId,productId,USERid,productName,imageId,count){
+ console.log(USERid,'USERid');//this userId here is passed for getTotalAmount- 
+ //so changeQuantity() triggers two helper functions-getChangeQuantity() and getTotalAmount inside CHANGE_PRODUCT_QUANTITY_POST
+
+   quantity=parseInt(document.getElementById(productId).innerHTML)
+   count= parseInt(count) //parsing it and putting it back
+	 price=parseInt(document.getElementById(imageId).innerHTML)
+	 
+	 console.log(quantity,'***')
+
+console.log(price,'^^^')
+  $.ajax({
+    url:'/change-product-quantity',
+    //data=> req.body ( below ones will be the req.body that will be posted or submitted, because here its post method and the url above is going to be posted)
+    data:{
+      Cart:cartId,
+      Product:productId,
+      Count:count,// count passed here is either 1 or -1
+      Quantity:quantity,
+      User:USERid,
+			
+		
+    }, 
+    method:'post',
+    //res.json(response)-> this response will now reach here 
+    success:(response)=>{ 
+			//when the response is truthy-it means it recieved smth truthy from res.json() from the controller which was -
+			//recieved from helper function saying {changedqunatity:true}
+      if(response.removeProduct){
+        /* alert */
+        Swal.fire({
+          position: 'middle',
+          icon: 'success',
+          title: 'Product removed from cart',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        window.setTimeout(function(){
+          location.reload()
+         } ,1000);
+         /* alert */
+        
+      }
+      else{
+        // each addedtocart product should have different unique id, id cant be same and also productid can be given as id because for each product it will change and it will be unique
+        document.getElementById(productId).innerHTML= quantity + count   //here a fixed id cant be given, because its not just one quantity , it will iterate as more product gets added to cart,since id need to be unique - one option is to go for productId
+        document.getElementById('sub').innerHTML= response.total  // productName was passed just to get a unique id for total-Quantity-changes product quantity
+        quamtity=quantity
+				//subtotal
+				if(count===1){
+				document.getElementById(productName).innerHTML= price * (quantity+1) //cart subTotal
+				}else{
+				document.getElementById(productName).innerHTML= price * (quantity-1) //cart subTotal
+				} 
+       
+        document.getElementById('grandTotal').innerHTML=response.total   //cart grandTotal
+      }
+      
+    }
+  })
+};
+
+//remove-Cart-Product
+   
+function removeCartProduct(cartId,prodId){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url:'/removeCartProduct',
+        data:{  //instead passing it as query now its passed in the data field
+          CartId:cartId,
+          ProdId:prodId
+        },
+        method:'post',
+        success:(response)=>{
+          if(response){
+            /* alert */
+            Swal.fire({
+              position: 'middle',
+              icon: 'success',
+              title: 'Product deleted from cart',
+              showConfirmButton: false,
+              timer: 800
+            })
+            window.setTimeout(function(){
+              location.reload()
+             } ,800);
+           /* alert */
+          }
+        }
+      })
+      
+    }
+  })
+   
+};
+
+	 </script>
+

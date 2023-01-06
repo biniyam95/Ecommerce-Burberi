@@ -1,0 +1,485 @@
+
+<style>
+   .button-36 {
+    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 3rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+ 
+
+  .button-36:hover {
+    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    transition-duration: .1s;
+  }
+
+.form-control:focus {
+  color: #495057;
+  background-color: rgb(255, 255, 255);
+  border-color: #0817ea;
+  outline: 0;
+  box-shadow: none;
+}
+</style>
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>User Profile</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3 text-uppercase">
+             {{allProfile.firstname}}  {{allProfile.lastname}}
+              </h5>
+            <p class="text-muted mb-4">{{allProfile.address.[0].street}}, {{allProfile.address.[0].city}}, {{allProfile.address.[0].country}}</p>
+            {{!-- <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Follow</button>
+              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+            </div> --}}
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+             
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <p class="mb-0">@mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+
+{{!--address add, edit,delete modal buttons --}}        
+                <div class=" d-inline-flex">
+                  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#form1">
+                    Add address
+                  </button>  
+                </div>
+
+                <div class=" d-inline-flex">
+                  <button type="button" class="btn btn-warning ml-5 " data-toggle="modal" data-target="#form2">
+                        {{!-- edit icon --}}<i class="fa-solid fa-pen-to-square"></i> 
+                  </button>  
+                </div>
+
+                <button class="btn btn-danger ml-2"><a href="/delete-address" class="text-dark"><i class="fa-solid fa-trash-can"></i></a></button>
+{{!--modal buttons end//--}}
+      
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class=" h6 text-muted mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class=" text-muted mb-0 text-uppercase">{{allProfile.firstname}} {{allProfile.lastname}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.phone}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">Referal Code</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.referalCode}}</p>
+              </div>
+            </div>
+            <hr>
+           
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">Street</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.address.[0].street}}{{!-- Bay Area, San Francisco, CA --}}</p>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">State</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.address.[0].state}}</p>
+              </div>
+            </div>
+            <hr>
+           
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">City</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.address.[0].city}}{{!-- Bay Area, San Francisco, CA --}}</p>
+              </div>
+            </div>
+            <hr>
+           
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="h6 text-muted mb-0">Zip</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{allProfile.address.[0].zip}}{{!-- Bay Area, San Francisco, CA --}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+        <div class="col-lg-12">
+          <div class="card mb-4"><div class="card-body">
+                                        <div class="row">
+                                            <h3 class="col-md-9">Wallet</h3>
+                                            <h3 class="col-md-3 mr-auto">Balance: <i class="fas fa-rupee-sign"></i>
+                                                {{wallet.walletBalance}}</h3>
+                                        </div>
+
+
+                                        <div class="myaccount-table table-responsive ">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Title</th>
+                                                        <th scope="col">Message</th>
+                                                        <th scope="col">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each wallet.walletTransaction}}
+                                                    <tr>
+                                                        <th scope="row" class="create_index"></th>
+                                                        <td>{{this.TransactionDate}}</td>
+                                                        <td>{{this.TransactionTitle}}</td>
+                                                        <td>{{this.TransactionMessage}}
+                                                          {{#if this.referer}} 
+                                                          ({{this.referer}})
+                                                          {{/if}}
+                                                        </td>
+                                                        <td>{{this.TransactionAmount}}</td>
+                                                    </tr>
+                                                    {{/each }}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div></div>
+        </div>
+
+       {{!--//////////////////////////////////////////////////////add modal////////////////////////////////////////////////////////////////////////////////////  --}}
+
+        {{!-- ADD modal form --}}
+        
+      {{!--   <div class=" d-inline-flex">
+  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#form1">
+    Add address
+  </button>  
+</div> --}}
+
+<div class="modal fade" id="form1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">        
+
+
+
+        {{!-- form modal --}}
+        <h5 class="fw-bold mb-2 text-uppercase text-secondary ">New Address</h2>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:rgb(228, 72, 72);">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+       
+        <div class="modal-body">
+            
+            <form action="/add-address"  method="POST">
+            <div class="form-group  ">
+                {{!-- <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="h6 small text-muted mb-0 float-left" for="form3Example1m">First name</label>
+                    <input type="text" name="" id="form3Example1m" class="form-control form-control-lg" />
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="h6 small text-muted mb-0 float-left" for="form3Example1n">Last name</label>
+                    <input type="text" name="" id="form3Example1n" class="form-control form-control-lg" />
+                    
+                  </div>
+                </div>
+              </div> --}}
+               <div class="form-outline mb-4">
+                  <label class="h6 small text-muted mb-0 float-left" for="form3Example8">Street</label>
+                <input type="text" name="street" id="form3Example8" class="form-control form-control-lg" />
+              </div>
+              <div class="row ">
+                <div class=" form-outline col-md-6 mb-4 mt-3">
+                    
+                  {{!--   //<select class="form-control form-select" name="categName" >
+                             {{#each AllCategs}}
+                              <option  value="{{this.categoryName}}">{{this.categoryName}}</option>
+                            {{/each}}
+                          </select> --}}
+
+                  <select class="select form-control form-control-lg form-select h6 small text-muted mb-0 float-left " name="state">
+                    <option value="1" >State</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="karnataka">Karnataka</option>
+                  </select>
+
+                </div>
+                <div class="form-outline col-md-6 mb-4 mt-3">
+
+                  <select class="select form-control form-control-lg form-select h6 small text-muted mb-0 float-left" name="city">
+                    <option value="1" >City</option>
+                    <option value="Cochin">Cochin</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="row">
+              <div class="form-outline col-md-6 mb-4 mt-4">
+                <label class="h6 small text-muted mb-0 float-left" for="form3Example3"></label>
+                <input type="text" name="zip" id="form3Example3" class="form-control form-control-lg h6 small text-muted mb-0 float-left" placeholder="Zip code"/>
+                
+              </div>
+              <div class="form-outline col-md-6 mb-4 mt-4">
+
+                  <select class="select form-control form-control-lg h6 small text-muted mb-0 float-left" name="country">
+                    <option value="1" >Country</option>
+                    <option value="India">India</option>
+                  </select>
+
+                </div>
+                </div>
+
+          {{!-- <div class="form-group">
+            <label for="email1">Email address</label>
+            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>
+          </div> --}}
+          <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" class="button-36">Submit</button>
+        </div>
+        </div>
+        </form>
+        </div>
+            
+        
+      
+     
+    </div>
+  </div>
+</div>
+{{!--// ADD modal form --}}
+
+{{!-- ///////////////////////////////////////////////////////////////////////edit modal////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+
+{{!-- edit modal form --}}
+        
+       {{!--  <div class=" d-inline-flex">
+  <button type="button" class="btn btn-warning ml-5 " data-toggle="modal" data-target="#form2">
+        <i class="fa-solid fa-pen-to-square"></i> 
+  </button>  
+</div> --}}
+
+<div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">        
+
+
+
+        {{!-- form modal --}}
+        <h5 class="fw-bold mb-2 text-uppercase text-warning ">Edit Address</h2>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:rgb(228, 72, 72);">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+       
+        <div class="modal-body">
+            
+            <form action="/edit-address"  method="POST">
+            <div class="form-group  ">
+                {{!-- <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="h6 small text-muted mb-0 float-left" for="form3Example1m">First name</label>
+                    <input type="text" name="" id="form3Example1m" class="form-control form-control-lg" />
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="h6 small text-muted mb-0 float-left" for="form3Example1n">Last name</label>
+                    <input type="text" name="" id="form3Example1n" class="form-control form-control-lg" />
+                    
+                  </div>
+                </div>
+              </div> --}}
+               <div class="form-outline mb-4">
+                  <label class="h6 small text-muted mb-0 float-left" for="form3Example8">Street</label>
+                <input type="text" name="street" id="form3Example8" class="form-control form-control-lg" value="{{allProfile.address.[0].street}}" />
+              </div>
+              <div class="row ">
+                <div class=" form-outline col-md-6 mb-4 mt-3">
+                    
+                  {{!--   //<select class="form-control form-select" name="categName" >
+                             {{#each AllCategs}}
+                              <option  value="{{this.categoryName}}">{{this.categoryName}}</option>
+                            {{/each}}
+                          </select> --}}
+
+                  <select class="select form-control form-control-lg form-select h6 small text-muted mb-0 float-left " name="state">
+                    <option value="{{allProfile.address.[0].state}}" >{{allProfile.address.[0].state}}</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="karnataka">Karnataka</option>
+                  </select>
+
+                </div>
+                <div class="form-outline col-md-6 mb-4 mt-3">
+
+                  <select class="select form-control form-control-lg form-select h6 small text-muted mb-0 float-left" name="city">
+                    <option value="1" >{{allProfile.address.[0].city}}</option>
+                    <option value="Cochin">Cochin</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="row">
+              <div class="form-outline col-md-6 mb-4 mt-4">
+                <label class="h6 small text-muted mb-0 float-left" for="form3Example3"></label>
+                <input type="text" name="zip" id="form3Example3" class="form-control form-control-lg h6 small text-muted mb-0 float-left" value="{{allProfile.address.[0].zip}}" placeholder="Zip code"/>
+                
+              </div>
+              <div class="form-outline col-md-6 mb-4 mt-4">
+
+                  <select class="select form-control form-control-lg h6 small text-muted mb-0 float-left" name="country">
+                    <option value="1" >{{allProfile.address.[0].country}}</option>
+                    <option value="India">India</option>
+                  </select>
+
+                </div>
+                </div>
+
+          {{!-- <div class="form-group">
+            <label for="email1">Email address</label>
+            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>
+          </div> --}}
+          <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" class="button-36">Submit</button>
+        </div>
+        </div>
+        </form>
+        </div>
+            
+        
+      
+     
+    </div>
+  </div>
+</div>
+{{!--// edit modal form --}}
+
+{{!-- <button class="btn btn-info float-right"><i class="fa-solid fa-trash-can"></i></button> --}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- wallet and transaction history --}}
+{{!-- <div  id="wallet" > --}}
+                                    

@@ -1,0 +1,137 @@
+{{!-- <style>
+	nav.main-menu li a.active {
+ color:rgb(2, 39, 202);
+} --}}
+</style>
+<!-- header -->
+{{#unless hidepartial}}
+   
+	<header class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="#">
+								{{!-- <p style="color:#cde6f3; font-weight: 700;font-size: x-large;">MiSty</p> --}}
+						<img src="../../user-asset/assets/img/Screenshot_2022-11-30_134337-removebg-preview.png" alt="" class="mt-2">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								{{#if HOME}}
+								<li class="current-list-item"><a href="/">HOME</a></li>
+								{{else}}
+								<li ><a href="/">HOME</a></li>
+								{{/if}}
+
+
+								{{#if SHOP}}
+								<li class="current-list-item"><a href="/shop-all">SHOP</a></li>
+								{{else}}
+								<li><a href="/shop-all">SHOP</a></li>
+								{{/if}}
+
+								{{#if ORDERS}}
+								<li class="current-list-item"><a href="/view-orders">ORDERS</a></li>
+								{{else}}
+								<li><a href="/view-orders">ORDERS</a></li>
+								{{/if}}
+								<li><a href="">OFFERS</a></li>
+								<li><a href="">CONTACT</a></li>
+								<li><a href="">ABOUT</a></li>
+								<li>
+									<div class="header-icons">
+										
+										{{!-- wishlist --}}
+										<a class="shopping-cart" href="/wishlist">
+										{{#if wishlist}}
+										<i class="fa-solid fa-heart" style="color: rgb(242,129,35);"></i>
+										{{else}}
+										<i class="fa-solid fa-heart" ></i>
+										{{/if}}
+										<span class="badge bg-warning text-dark" id="wish-badge-count" style="border-radius:100px ;">{{wishCount}}</span></a>
+									
+										
+										{{!-- cart --}}
+										<a class="shopping-cart" href="/cart">
+										{{#if cart}}
+										<i class="fas fa-shopping-cart" style="color: rgb(242,129,35);"></i>
+										{{else}}
+										<i class="fas fa-shopping-cart"></i>
+										{{/if}}
+										<span class="badge bg-warning text-dark" id="cart-badge-count" style="border-radius:100px ;">{{cartCount}}</span></a>
+										
+										{{!-- search --}}
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+									{{#if LoggedIN}}
+									<a class="shopping-cart" href="/profile">
+									{{#if profile}}
+									<i class="fa-solid fa-user-gear" style="color: rgb(242,129,35);"></i>
+									{{else}}
+									<i class="fa-solid fa-user-gear"></i>
+									{{/if}}
+									</a>
+									{{/if}}
+									{{!-- login/logout --}}
+									{{#if LoggedIN}}
+										<a onclick="confirmLogout()" ><i class="fa-solid fa-right-from-bracket" ></i></a>
+									{{else}}
+                    <a class="shopping-cart" href="/login"><i class="fa-solid fa-user"></i></a>
+                  {{/if}}
+									
+									</div>
+									
+								</li>
+							</ul>
+							
+						</nav>
+						 
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	{{/unless}}
+
+	<!-- end header -->
+
+
+<script>
+	function confirmLogout(){
+	Swal.fire({
+  title: '',
+  text: "",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Log Out!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    location.href='/logout'
+  }
+})
+}
+
+//to toggle active-remove active class and add active class
+/*var items = $(".main-menu li a");
+items.on("click",function(){
+  items.removeClass("active");
+  $(this).addClass("active");
+});*/
+</script>
+
+	
+
+  
+    
+  

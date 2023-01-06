@@ -1,0 +1,350 @@
+<style>
+.prodimg-wrapper {  
+  
+  overflow: hidden; 
+}
+
+.inner-prodimg {
+  transition: 0.3s;
+}
+
+.inner-prodimg:hover {
+  transform: scale(1.1);
+}
+
+/* Other styling elements, that are not necessary for the example */
+
+.prodimg-wrapper {
+  display: inline-block;
+  box-sizing: border-box;
+ 
+}
+
+/*/////////////////////////////////////////////*/
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  right: 0;
+  background-color: #260b0f41; /*overlay color*/
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: 0.8s ease;
+}
+
+.product-grid:hover .overlay {
+  width: 100%;
+  left: 0;
+}
+
+/*.product-grid:hover  .product-image  {
+   opacity:0.7;
+	 background-color: rgba(0, 0, 0, 0.5);
+	 z-index:-5;
+}*/
+
+/*.button-icon:hover{
+	color:#f50b55; 
+	
+}*/
+
+.product-grid{
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;	
+}
+	.product-grid:hover{
+		box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+transition: 0.6s ;
+	}
+	.product-grid{ font-family: 'Poppins', sans-serif; }
+
+.product-grid .product-image{
+overflow: hidden;
+position: relative;
+z-index: 1;
+}
+
+.product-grid .product-image a.image{display: block; }
+.product-grid .product-image img{
+width: 100%;
+height: auto;
+}
+.product-grid .product-image .img-1{ transition: all 0.3s ease 0s; }
+.product-grid:hover .product-image .img-1{ opacity: 0; }
+.product-grid .product-image .img-2{
+width: 100%;
+height: 100%;
+opacity: 0;
+backface-visibility: hidden;
+position: absolute;
+left: 0;
+top: 0;
+z-index: -1;
+transition: all 0.3s ease 0s;
+}
+.product-grid:hover .product-image .img-2{ opacity: 1; }
+.product-grid .product-hot-label,
+.product-grid .product-discount-label{
+color: #fff;
+background: rgb(184, 105, 148); /*price bg color*/
+font-size: 12px;
+font-weight: 600;
+text-transform: uppercase;
+padding: 3px 10px;
+position: absolute;
+top: 10px;
+left: 10px;
+
+}
+.product-grid .product-discount-label{
+background: #7fb47c;
+left: auto;
+right: 10px;
+}
+.product-grid .product-view{
+color: #fff;
+background:#000;
+font-size: 16px;
+text-align: right;
+line-height: 50px;
+width: 60px;
+height: 60px;
+padding: 0 16px 0 0;
+border-radius: 50px;
+opacity: 0;
+transform: scale(0);
+position: absolute;
+bottom: -40px;
+left: -40px;
+transition: all .3s ease;
+}
+.product-grid:hover .product-view{ 
+opacity: 1;
+transform: scale(1);
+bottom: -20px;
+left: -20px;
+
+}
+.product-grid .product-view:hover{ background: #ff6f00; }
+.product-grid .product-links{
+padding: 0;
+margin: 0;
+list-style: none;
+transform: translateY(50%);
+position: absolute;
+bottom: 50%;
+right: 10px;
+z-index: 1;
+
+}
+.product-grid .product-links li{
+margin: 5px 0;
+opacity: 0;
+transform: translateX(100%);
+transition: all .3s ease;
+
+}
+.product-grid .product-links li:nth-child(2){ transition-delay: .1s; }
+.product-grid .product-links li:nth-child(3){ transition-delay: .2s; }
+.product-grid:hover .product-links li{
+opacity: 1;
+transform: translateX(0); 
+
+}
+
+.product-grid .product-links li a{
+color: rgb(235, 234, 234);/*icons color*/
+background: rgba(0, 0, 0, 0.248);/*icons bg color*/
+font-size: 18px;
+text-align: center;
+line-height: 33px;
+width: 35px;
+height: 35px;
+border-radius: 50px;
+display: block;
+transition: all .3s ease;
+}
+.product-grid .product-links li a:hover{
+color:#e48888fe;/*icons hover color*/
+
+}
+.product-grid .product-content{
+background: #fff;
+padding: 15px 0 0;
+}
+.product-grid .rating{
+color: #f7bc3d;
+font-size: 11px;
+padding: 0;
+margin: 0 0 8px;
+list-style: none;
+}
+.product-grid .rating li{ display: inline-block; }
+.product-grid .rating .disable{ color: #a3a3a3; }
+.product-grid .title{
+font-size: 15px;
+font-weight: 500;
+text-transform: capitalize;
+margin: 0 0 8px;
+}
+.product-grid .title a{
+color: #333;
+transition: all 0.3s ease 0s;
+}
+.product-grid .title a:hover{ color: #17A2B8; }
+.product-grid .price{
+color: #a3a3a3;
+font-size: 15px;
+font-weight: 500;
+}
+.product-grid .price span{
+color: #999;
+font-size: 14px;
+font-weight: 400;
+text-decoration: line-through;
+margin-right: 5px;
+}
+@media screen and (max-width: 990px){
+.product-grid{ margin-bottom: 30px; }
+}
+
+#heart-icon-wish:hover{
+  color:rgb(235, 232, 232);
+}
+
+/*///////////////////////////////////////////////*/
+
+</style>
+
+<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg" >
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Juicy Flavors</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+<div class="product-section mt-80 mb-150">
+		<div class="container">
+  <div class="row product-lists ">
+	{{#each wishProds}}
+<div class="col-lg-4 col-md-6 col-sm-6 {{this.prodFinish.categName}} mb-5">
+<div class="product-grid">
+<div class="product-image">
+{{!-- <a href="#" class="image"> --}}
+	<a href="/single-product?id={{this.prodFinish._id}}" >
+	<div class="prodimg-wrapper"><img class="img-1" src="/product-images/{{this.prodFinish.prodImage1}}"></div>
+	</a>
+	
+	<div class="prodimg-wrapper"><img class="img-2" src="/product-images/{{this.prodFinish.prodImage2}}" class="inner-prodimg"></div>
+	</a>
+
+<span class="product-hot-label">&#8377; {{this.prodFinish.price}} <small>/ Kg</small> </span>
+
+{{!-- overlay --}}
+<div class="overlay">
+	<ul class="product-links">
+
+		{{!-- button icons --}}
+    {{!-- <button class="button-icon rounded" style="background-color: rgba(126, 147, 209, 0.248);border-style:none;font-size: xx-large;"> --}}
+	<li><a onclick="removeWishProduct('{{this._id}}','{{this.prodItem}}')">
+    <i class="fa fa-heart" id="heart-icon-wish" style="color:#c62626;"></i>
+    </a></li>
+	<li>
+			<a href="/single-product?id={{this.prodFinish._id}}" style="font-size: x-large;"><i class="fa fa-random"></i></a></li>
+
+	<li><a onclick="addToCartFun('{{this.prodFinish._id}}')"  style="font-size:x-large;">
+		{{!-- add to cart --}}
+		<i class="fa-solid fa-cart-plus"></i>
+		</a></li>
+	</ul>
+
+</div>
+
+
+
+
+
+</div>
+
+<div class="product-content text-center ">
+
+<h5 class="text-uppercase">{{this.prodFinish.prodName}}</h5>
+
+<ul class="list-inline small">
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+            <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+          </ul>
+					  
+<p>
+						<strong style="font-size: large;">&#8377;{{this.prodFinish.price}}</strong>	
+							<small>/ Kg </small> 
+</p>
+
+
+</div>
+</div>
+</div>
+{{/each}}
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+  function removeWishProduct(WishId,ProdId){
+      $.ajax({
+        url:'/remove-wishProd',
+        method:"post",
+        data:{
+          wishId:WishId,
+          prodId:ProdId
+        },
+        success:(response)=>{
+          if(response){
+            /* alert */
+            Swal.fire({
+              position: 'middle',
+              icon: 'success',
+              title: 'Product deleted from wishlist',
+              showConfirmButton: false,
+              timer: 800
+            })
+            
+            window.setTimeout(function(){
+              location.reload();
+              /*refreshPage();*/
+             } ,800);
+           /* alert */
+          }
+        }
+      })
+  };
+
+ 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  

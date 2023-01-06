@@ -1,0 +1,170 @@
+
+<style>
+  /* CSS */
+  .button-36 {
+    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 3rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-36:hover {
+    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    transition-duration: .1s;
+  }
+
+  @media (min-width: 768px) {
+    .button-36 {
+      padding: 0 2.6rem;
+    }
+  }
+
+ /*OTP card*/
+  .form-control {
+  margin-right: 20px;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: rgb(255, 255, 255);
+  border-color: #0817ea;
+  outline: 0;
+  box-shadow: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+</style>
+
+
+
+    <section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-white text-white" style="border-radius: 1rem;">
+          <div class="card-body text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase text-dark">LOGIN</h2>
+              
+              <p class="text-secondary-50 mb-5" >
+                {{#if loginErrFound }}
+                   <small id="login-err" style="color:#EA7884 ;">{{loginErrFound}}</small>  
+                  {{else}}
+                   Please login if already a member !
+                {{/if}}
+                
+                </p>
+              
+
+             <form action="/login"  method="POST">
+        
+        <span id="login-err" style="color:#EA7884 ;"></span>
+       
+            <div class="form-group ">
+             
+             
+ 
+           <div class="form-floating mb-5  ">
+         
+                  <label for="floatingInput" class="h6 small text-muted mb-0 float-left" id="email-err"  > Email address</label>
+
+              <input type="email" class="form-control form-group form-group-lg" name="email" id="email" placeholder="Email Id" value="ray@gmail.com" onkeyup=" validateEmail()">
+              
+            </div>
+
+            <div class="form-floating mb-3">
+               <label for="floatingPassword" class="h6 small text-muted mb-0 float-left " id="password-err">Password</label>
+
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="2243" onkeyup="validatePassword()" >
+            </div>
+             
+              <!-- password input -->
+                {{!-- <label for="password"  class="text-info"><span class="text-danger">*</span>Password</label>
+                <input type="password"  name="password" id="password" onkeyup="validatePassword()" value="9999" class="form-control" >
+                     <span id="password-err" style="color:#EA7884;"></span><br> --}}
+                {{!-- {{#if loginErr}}
+                <h6 class="text-warning"> Invalid Credentials !</h6>
+                {{/if}} --}}
+
+                 {{!-- <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+      <!-- Checkbox -->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Remember me </label>
+      </div>
+    </div>
+
+    <div class="col">
+      <!-- Simple link -->
+      <a href="#!">Forgot password?</a>
+    </div>
+  </div> --}}
+                 
+                 <!-- Submit button -->
+                 
+                  <div class="text-center mt-5">
+                  <button type="submit" class="button-36  " onclick="return validateForm()">Login</button>
+                  <span id="submit-err"></span>
+                  
+                  </div>
+
+                  <button class="btn btn-light mt-4"><a href="/Otp-Login" class="text-primary">OTP login</a></button>
+                  
+                   
+                   <!-- Register buttons -->
+                  <div class="text-center mt-5">
+                    <p class="text-muted">Not a member? <a href="/signup">Sign up</a></p>  
+                  </div>
+            </div>
+        </form>
+
+        
+              {{!-- <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button> --}}
+
+               <button type="button" class="btn btn-link btn-floating mx-1 mt-4">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1 mt-4">
+      <i class="fab fa-google"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1 mt-4">
+      <i class="fab fa-twitter"></i>
+    </button>
+
+    <button type="button" class="btn btn-link btn-floating mx-1 mt-4">
+      <i class="fab fa-github"></i>
+    </button>
+            </div>
+
+         
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {{!-- head --}}
+ <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+      
+      
+	<!-- title -->
+	<title>BurrBerri</title>
+ 
+    <!--user-header fontawesome kit-->
+  <script src="https://kit.fontawesome.com/bf9ab953eb.js" crossorigin="anonymous"></script>
+
+  <!-- jquery ajax library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Load just-handlebar-helpers -->
+<script src="https://unpkg.com/just-handlebars-helpers@1.0.19/dist/h.min.js"></script>
+
+<script type="text/javascript">
+  // Register just-handlebars-helpers with handlebars
+  H.registerHelpers(Handlebars);
+</script>
+
+
+    {{!-- /index/landing/home template link start --}}
+                  <!-- favicon -->
+                <link rel="shortcut icon" type="image/png" href="../../user-asset/assets/img/Screenshot_2022-11-30_134337-removebg-preview.png">
+                <!-- google font -->
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+                <!-- fontawesome -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/all.min.css">
+                <!-- bootstrap -->
+                <link rel="stylesheet" href="../../user-asset/assets/bootstrap/css/bootstrap.min.css">
+                <!-- owl carousel -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/owl.carousel.css">
+                <!-- magnific popup -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/magnific-popup.css">
+                <!-- animate css -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/animate.css">
+                <!-- mean menu css -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/meanmenu.min.css">
+                <!-- main style -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/main.css">
+                <!-- responsive -->
+                <link rel="stylesheet" href="../../user-asset/assets/css/responsive.css">
+
+                <link rel="stylesheet" href="../../stylesheets/additional.css">
+                <link rel="stylesheet" href="../../stylesheets/preloader.css">
+
+                 <!-- Bootstrap Dropdown Hover CSS -->
+          <link href="css/animate.min.css" rel="stylesheet">
+          <link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+
+              
+               
+       {{!-- <style>
+        #loader {
+  /* Uncomment this to make it run! */
+  /*
+     animation: loader 5s linear infinite; 
+  */
+  
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+}
+@keyframes loader {
+  0% { left: -100px }
+  100% { left: 110%; }
+}
+#box {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  animation: animate .5s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+}
+@keyframes animate {
+  17% { border-bottom-right-radius: 3px; }
+  25% { transform: translateY(9px) rotate(22.5deg); }
+  50% {
+    transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+    border-bottom-right-radius: 40px;
+  }
+  75% { transform: translateY(9px) rotate(67.5deg); }
+  100% { transform: translateY(0) rotate(90deg); }
+} 
+#shadow { 
+  width: 50px;
+  height: 5px;
+  background: #000;
+  opacity: 0.1;
+  position: absolute;
+  top: 59px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow .5s linear infinite;
+}
+@keyframes shadow {
+  50% {
+    transform: scale(1.2,1);
+  }
+}
+
+
+body {
+  background: #6997DB; 
+  overflow: hidden;
+}
+h4 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  font-weight: 200;
+  opacity: .5;
+	font-family: sans-serif;
+  color: #fff;
+}
+       </style>   --}}        
+   {{!-- index/landing/home template link end --}}
+  
+  </head>
+
+{{!-- body --}}
+<body>
+
+  <!--PreLoader-->
+    {{!-- <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div> --}}
+
+   {{!--  <div id="loader">
+  <div id="shadow"></div>
+  <div id="box"></div>
+</div> --}}
+    {{!-- <div class="loadingloader"> 
+  <svg width="16px" height="12px">
+    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+  </svg>
+</div> --}}
+{{!-- <div id="loader">
+  <div id="shadow"></div>
+  <div id="box"></div>
+</div> --}}
+    <!--PreLoader Ends-->
+                          
+                            {{>user-header}}
+
+                            {{{body}}}
+
+                            {{>user-footer}}
+
+    {{!-- scripts --}}
+    
+     {{!-- razorpay checkout script --}}
+     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    {{!-- validation in javascript for forms   --}}
+        <script src="\javascripts\validation.js"></script>  
+
+    
+    
+    {{!--  button action --}}
+     <script src="\javascripts\Button.js"> </script>                
+
+     {{!-- sweet alert --}}
+     {{!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+{{!-- sweetalert2  --}}
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+     {{!-- pagination --}}
+
+    
+    {{!-- home template script start --}}
+    <!-- jquery -->
+                <script src="../../user-asset/assets/js/jquery-1.11.3.min.js"></script>
+                <!-- bootstrap -->
+                <script src="../../user-asset/assets/bootstrap/js/bootstrap.min.js"></script>
+                <!-- count down -->
+                <script src="../../user-asset/assets/js/jquery.countdown.js"></script>
+                <!-- isotope -->
+                <script src="../../user-asset/assets/js/jquery.isotope-3.0.6.min.js"></script>
+                <!-- waypoints -->
+                <script src="../../user-asset/assets/js/waypoints.js"></script>
+                <!-- owl carousel -->
+                <script src="../../user-asset/assets/js/owl.carousel.min.js"></script>
+                <!-- magnific popup -->
+                <script src="../../user-asset/assets/js/jquery.magnific-popup.min.js"></script>
+                <!-- mean menu -->
+                <script src="../../user-asset/assets/js/jquery.meanmenu.min.js"></script>
+                <!-- sticker js -->
+                <script src="../../user-asset/assets/js/sticker.js"></script>
+                <!-- main js -->
+                <script src="../../user-asset/assets/js/main.js"></script>
+                
+ {{!-- home template script end --}}
+
+ {{!-- dropdown hover --}}
+  <script src="js/bootstrap-dropdownhover.min.js"></script>
+
+ {{!-- image zoom --}}
+    <script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
+  
+  
+
+        
+            {{!-- image zoom function --}}
+                <script>
+                console.log("hi")
+                var options = {
+                  width:350,
+                  zoomWidth:250,
+                  scale:1.1,
+   
+                               /* width: 450, 
+                                zoomWidth: 150,
+                                scale: 0.7,
+                                offset:{
+                                  vertical:-10,
+                                  horizontal:-20
+                                }*/   
+                               };
+                new ImageZoom(document.getElementById("prodimg-container"),options);
+                </script>
+
+
+
+
+
+
+                
+
+ 
+
+</body>
+</html>
+

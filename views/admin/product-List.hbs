@@ -1,0 +1,89 @@
+
+
+<h4 class="fw-bold py-2 mb-4 px-4"><span class="text-muted fw-bold">/ PRODUCT LIST </span> </h4>
+            <button class="btn btn-dark float-end " style="border-radius:60px"><a href="/admin/add-product" class="text-secondary"><i class="fa-solid fa-plus"></i></a></button>
+
+                   <!-- Hoverable Table rows -->
+              <div class="card">
+                <div class="table-responsive text-nowrap">
+  
+                  <table class="table table-hover">
+                    <thead class="text-center table-primary">
+                      <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0 text-center ">
+                      {{#each AllProducts}}
+                      <tr>
+                        <th scope="row">{{math @index '+' 1}}</th>   {{!-- in app.engine this is used to use all kinds of 'math' operations --}}
+                       
+                        {{!-- image --}}
+                        <td>
+                          <ul class="list-unstyled users-list m-0 {{!-- avatar-group --}} d-inline-flex align-items-center ">
+                            <li
+                              data-bs-toggle="tooltip"
+                              data-popup="tooltip-custom"
+                              data-bs-placement="top"
+                              class="avatar avatar-x pull-up "
+                              title="{{this.prodName}}-1"
+                            >
+                              <img src="/product-images/{{this.prodImage1}}" alt="Avatar" class="rounded-circle border border-secondary" style="background-color: rgba(139, 207, 187, 0.233);"/>
+                            </li>
+                            <li
+                              data-bs-toggle="tooltip"
+                              data-popup="tooltip-custom"
+                              data-bs-placement="top"
+                              class="avatar avatar-x pull-up "
+                              title="{{this.prodName}}-2"
+                            >
+                              <img src="/product-images/{{this.prodImage2}}" alt="Avatar" class="rounded-circle border border-secondary" style="background-color: rgba(207, 170, 139, 0.233);"/>
+                            </li>
+                            <li
+                              data-bs-toggle="tooltip"
+                              data-popup="tooltip-custom"
+                              data-bs-placement="top"
+                              class="avatar avatar-x pull-up"
+                              title="{{this.prodName}}-3"
+                            >
+                              <img src="/product-images/{{this.prodImage3}}" alt="Avatar" class="rounded-circle border border-secondary" style="background-color: rgba(139, 207, 187, 0.233);"/>
+                            </li>
+                            <li
+                              data-bs-toggle="tooltip"
+                              data-popup="tooltip-custom"
+                              data-bs-placement="top"
+                              class="avatar avatar-x pull-up "
+                              title="{{this.prodName}}-4"
+                            >
+                              <img src="/product-images/{{this.prodImage4}}" alt="Avatar" class="rounded-circle border border-secondary" style="background-color: rgba(207, 170, 139, 0.233);"/>
+                            </li>
+                          </ul>
+                        </td>
+                        {{!-- /image --}}
+
+                        <td><i class=""></i> <strong>{{this.prodName}}</strong></td> 
+                        <td><i class=""></i> <strong>{{this.categName}}</strong></td> 
+                        <td>&#8377;{{this.price}}</td>
+                        <td>{{this.stock}}</td>
+
+                        <td> 
+                            <button class="btn btn-dark"><a href="/admin/edit-product/{{this._id}}" class="text-secondary" ><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <button class="btn btn-dark"><a href="/admin/delete-product/{{this._id}}" class="text-secondary" onclick="return confirm('confirm delete item {{this.prodName}} ')"><i class="fa-solid fa-trash-can"></i></a></button>
+                        </td>     
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--/ Hoverable Table rows -->   
+                        
+
+
+

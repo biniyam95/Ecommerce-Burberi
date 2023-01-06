@@ -1,0 +1,122 @@
+
+    <div class="pagetitle">
+        <h1>Sales Report</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/admin-home">Home</a></li>
+                <li class="breadcrumb-item active">Sales Report</li>
+                <div class="float-right">
+
+
+                </div>
+
+            </ol>
+
+        </nav>
+        <div class="ps-10">
+            <button class="btn btn-sm btn-success " onclick="exportToExcel()">Export Excel <i
+                    class="bi bi-file-earmark-excel"></i></button>
+            <button class="btn btn-sm btn-danger " onclick="exportToPDF()">Export PDF <i
+                    class="bi bi-filetype-pdf"></i></button>
+        </div>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard" id="invoice">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+                <div class="row">
+
+                    <!-- sales report -->
+                    <div class="col-12">
+                        <div class="card top-selling overflow-auto">
+                            <div class="filter">
+                                
+                                <form action="/admin/searchByDate" method="post">
+                                    <input type="date" name="fromDate" id=""> to
+                                    <input type="date" name="toDate" id="">
+                                    <button type="submit" class="btn btn-primary  btn-sm">Search by Date</button>
+                                </form>
+                            </div>
+
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">Sales Report <span></span></h5>
+
+                                <table class="table table-borderless" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Sold Qty</th>
+                                            <th scope="col">Revenue</th>
+                                            {{!-- <th scope="col">Profit/Loss</th> --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each salesReport}}
+                                        <tr>
+                                            <th scope="row">{{math @index '+' 1}}</th>
+                                            <td><a href="#" class="text-primary fw-bold">{{this.Item}}</a></td>
+                                            <td>{{this.totalquantity}}</td>
+                                            <td class="fw-bold"> <i class="bi bi-currency-rupee"></i> {{this.totalRevenue}}
+                                            </td>
+                                            {{!-- <td> <i class="bi bi-currency-rupee"></i> {{this.profit}}</td> --}}
+                                        </tr>
+                                        {{/each}}
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div><!-- End Sales Report -->
+
+                   
+
+
+
+                </div>
+            </div><!-- End Left side columns -->
+
+        </div>
+    </section>
+
+
+
+
+<script src="../assets/js/exportexcel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<script>
+
+
+    function exportToExcel() {
+        
+        let table = new Table2Excel();
+        console.log(table)
+        table.export(document.querySelectorAll("table.table"))
+    }
+
+
+
+    function exportToPDF() {
+        const element = document.getElementById('invoice');
+        element.style.width = '100%';
+        element.style.height = '900px';
+        let opt = {
+            margin: 10,
+            filename: 'Burrberri.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'mm', orientation: 'landscape' }
+
+        }
+        html2pdf().set(opt)
+            .from(element)
+            .save();
+
+    }
+</script>

@@ -1,0 +1,59 @@
+<h4 class="fw-bold py-2 mb-4 px-4"><span class="text-muted fw-bold">/ USER LIST </span> </h4>
+
+      <!-- Hoverable Table rows -->
+              <div class="card">
+                
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-hover">
+                    <thead class="text-center">
+                      <tr>
+                        <th>#</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>phone</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0 text-center">
+                     
+                      {{!--  iterating for each rows of the table   --}}
+                      {{#each fetchedUserf}}
+                      <tr>
+                        <th scope="row">{{math @index '+' 1}}</th>
+                        <td><i class=""></i> <strong>{{this.firstname}}</strong></td>
+                        <td>{{this.lastname}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.phone}}</td>
+                        
+                        <td>
+                       {{#if this.blocked}}
+                          <span class="badge bg-label-danger me-1" >Blocked</span>
+                          {{else}}
+                          <span class="badge bg-label-primary me-1" >Active</span>
+                          {{/if}}
+                        </td>
+                        <td> 
+                            <button class="btn btn-light">
+                              {{!-- toggling href and button text         --}}
+                              {{#if this.blocked}}
+                              <a href="/admin/unblock-user/{{this._id}}" id="" class="text-primary" onclick="return confirm('confirm unblocking {{this.firstname}}')">UnBlock</a>
+                                  {{else}}
+                                  <a href="/admin/block-user/{{this._id}}" id="" class="text-danger" onclick="return confirm('confirm blocking {{this.firstname}}')">Block</a>
+
+                                  {{/if}}
+                                  {{!-- <button onclick="myFunction()">Click Here!</button> --}}
+		
+                            </button>
+                        </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--/ Hoverable Table rows -->
+
+
+        

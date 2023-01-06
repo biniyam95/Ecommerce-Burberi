@@ -1,0 +1,83 @@
+<div class="container-xxl col-md-6 mt-5 mb-5">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner ">
+
+{{!-- card body --}}
+<div class="card">
+            <div class="card-body ">
+
+    <div class="outer w-50 mx-auto " style="margin-top:50px ;">
+
+        <h2 class="text-center" >Admin login </h2>
+       
+       {{!-- form --}}
+        <form action="/admin"  method="POST" >
+            <div class="form-group" >
+             
+              <!-- Email input -->
+              
+              
+                <label for="">Email Id <span class="text-danger">*</span></label>
+                <input 
+                        type="email" 
+                        name="email" 
+                        id="email"
+                        onkeyup=" validateEmail()" 
+                        {{!-- placeholder="Enter your email id"  --}}
+                        value="admin@gmail.com"
+                        autofocus=""
+                        class="form-control">
+                      <span id="email-err" style="color:red ;"></span><br>
+             
+             
+              <!-- password input -->
+              
+                <label for="">Password <span class="text-danger">*</span></label>
+                <input 
+                        type="password"  
+                        name="password" 
+                        id="password" 
+                        onkeyup="validatePassword()" 
+                        {{!-- placeholder="Enter your password"  --}}
+                        value="1111"
+                        autofocus=""
+                        class="form-control">
+                      <span id="password-err" style="color:red ;"></span><br>
+                
+                
+                
+                {{!-- {{#if loginErr}}
+                <h6 class="text-warning"> Invalid Credentials !</h6>
+                {{/if}} --}}
+                 
+                 <!-- Submit button -->
+                  <div class="text-center mb-3">
+                  <button 
+                        type="submit" 
+                        class="btn btn-primary text-center" 
+                        onclick="return validateForm()">Login
+                  </button>
+                      <span id="submit-err" style="color:red;"></span>
+                  </div>
+                  <br><br>
+
+                   
+                 
+                  
+            </div>
+        </form>
+    </div>
+
+    
+    
+    
+    
+    </div>
+
+    </div>
+    
+    </div>
+
+    </div>
+
+    </div>

@@ -1,0 +1,468 @@
+
+
+	{{!-- <!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa --> --}}
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Check Out Product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- check out section -->
+	<div class="checkout-section mt-80 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingOne">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          Billing Address
+						        </button>
+						      </h5>
+						    </div>
+
+						    <div id="" class="" aria-labelledby="headingOne" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="billing-address-form">
+
+						{{!-- FORM--}}
+              <form action="/place-order" method="post" id="place-order-form">
+							         
+						 <div class="row">
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="firstname" id="firstname" value="{{allProfile.firstname}}"></p>
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="lastname"  id="lastname" value="{{allProfile.lastname}}"></p>
+                  
+                </div>
+              </div>
+							<div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="email" id="email" value="{{allProfile.email}}"></p>
+
+                </div>
+              </div>
+            </div>
+
+
+
+						<div class="row ">
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text"  value="{{allProfile.address.[0].street}}"></p>
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" value="{{allProfile.address.[0].zip}}"></p>
+                  
+                </div>
+              </div>
+							<div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="phone" id="phone"  onclick="validatePhone()" value="{{allProfile.phone}}"></p>
+									<span id="phone-err"></span>
+
+                </div>
+              </div>
+            </div>
+
+						        		
+						        		
+												
+												{{!-- this is hidden from the user --}}
+												<p><input type="text" name="USER" id="USER" value="{{USERid}}" hidden></p>   
+						        		
+												{{!-- <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p> --}}
+                    
+                       {{!-- card details --}}	
+
+                      <div class="card single-accordion">
+						    <div class="card-header" id="headingThree">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						          Card Details
+						        </button>
+						      </h5>
+						    </div>
+						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="card-details">
+						        	
+                     
+           
+
+           {{!-- form of card details --}}
+            
+            <div class="form-check">
+              <input  type="radio" name="payment-method" id="COD" value="COD" onclick="hidePayWallet()" checked />
+              <label  for="">COD</label>
+            </div>
+
+            <div class="form-check ">
+              <input  type="radio" name="payment-method" id="ONLINE" value="ONLINE" onclick="showPayWallet()"  /> {{!-- value is the data thats being send with the key payment-method --}}
+              <label  for="">Razorpay</label>
+            </div>
+
+						<div class="form-check ">
+              <input  type="radio" name="payment-method" id="PAYPAL" value="PAYPAL" onchange="hidePayWallet()" />
+              <label  for="">PayPal</label>
+            </div>
+           
+            <div class="form-check " id="payWithWalletCheckbox" style="display:none;">
+              <input  type="checkbox" name="payWithWallet" id="payWithWallet" value="payWithWallet" /><label>Pay with Wallet</label>
+            </div>
+    {{!--  --}}
+						
+		{{!--  --}}
+
+
+
+            <div class="row ">
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="street" value="{{allProfile.address.[0].street}}" placeholder="Street"></p>
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="state" value="{{allProfile.address.[0].state}}" placeholder="State"></p>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="city" value="{{allProfile.address.[0].city}}" placeholder=" City "></p>
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="country" value="{{allProfile.address.[0].country}}" placeholder="Country"></p>
+                  
+                </div>
+              </div>
+
+							<div class="col">
+                <div class="form-outline billing-address-form">
+                 
+                  <p><input type="text" name="zip" value="{{allProfile.address.[0].zip}}" placeholder="Zip code"></p>
+                  
+                </div>
+              </div>
+            </div>
+						        </div>
+						      </div>
+									</div>
+									</div>
+		
+		<div class="text-center">									
+		<button class="boxed-btn" type="submit">Checkout</button>
+		</div>
+              {{!-- <a href="#" class="boxed-btn">Place Order</a> --}}
+            
+          {{!-- </form> --}}
+
+						    </div>
+						  </div>
+
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						  {{!-- <div class="card single-accordion">
+						    <div class="card-header" id="headingTwo">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						          Shipping Address
+						        </button>
+						      </h5>
+						    </div>
+						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="shipping-address-form">
+						        	
+                      <p>Your shipping address form is here.</p>
+						        
+                    </div>
+						      </div>
+						    </div>
+						  </div> --}}
+						  
+						</div>
+ 
+ <div class="col-lg-4">
+					<div class="order-details-wrap">
+            <div class="card mb-4"> 
+              <div class="card-header py-3" style="background-color: #EFEFEF;border-style: none;">
+                 <h5 class="mb-0">Summary</h5>
+              </div>
+              
+
+               <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Total Amount
+              <span>&#8377; <span id="totalAmount2">{{totalAmount}}</span></span>  {{!-- different id is given otherwise it will change the totalAmount on the cart --}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Discount percentage
+              <span><span id="discountPercentage">53</span>&#x25;</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Discount amount
+              <span>&#8377;<span id="discountAmount"> 0 </span></span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              Shipping
+             <span>&#8377;<span> 0 </span></span>
+
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>Net Total amount</strong>
+                <strong>
+                  <p class="mb-0">(including VAT)</p>
+                </strong>
+              </div>
+             <span> <strong> &#8377;<span id="netTotalAmount">{{totalAmount}}</span> </strong></span>
+            </li>
+          </ul>
+        </div>
+
+           </div>
+           {{!-- discount amount we are going to submit --}}
+     
+
+					 {{!-- coupons --}} 
+           {{!-- this is not inside the checkout form this is ajax , when you click it will change the totalamount after discounting it--}}
+           <div>
+                                    <p>Enter your coupon code if you have one. <br></p>
+                                    <input name="discountAmount2" value="0" id="discountAmount2" type="text" hidden>
+
+                                        <input type="text" class="stext-104 pr-2 size-117 bor13 " 
+                                            name="couponCode" id="couponCode" placeholder="enter a valid coupon">
+                                            </form> 
+
+                                        <button class="cart-btn-2 float-right mt-0 mb-2 btn btn-outline-success btn-sm "
+                                        onclick="applyCoupon()" id="applyCouponBtn">
+                                        Apply Coupon</button>
+                                        <button class="cart-btn-2 float-right mt-0 mb-2 btn btn-outline-danger btn-sm "
+                                        onclick="removeCoupon()" id="removeCouponBtn" style="display:none;">
+                                        Remove Coupon</button>
+                                        <br>
+                                        <span class="text-danger font-weight-bold  small mt-2" id="couponErr"></span>
+                                        <span class="text-success font-weight-bold small mt-2" id="couponValid"></span>
+                                       
+            </div>		
+					</div>
+				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end check out section -->
+
+{{!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+	<script>
+
+    //coupons apply
+function applyCoupon() {
+    let couponCode = document.getElementById('couponCode').value
+    $.ajax({
+        url: "/apply-coupon" ,
+        data:{
+          couponCode:couponCode
+        },
+         method: 'post',
+        
+        //when the json response successful passed or resolved from res.json(couponRes),ie,'response' is 'couponRes'
+        success: (response) => { 
+          //1)valid coupon
+            if (response.status) {
+              let totalAmount = parseInt(document.getElementById('totalAmount2').innerHTML) // since its HBS value it becomes a pure html content. value cannot be used here
+              //couponObj stores activeCoupon
+              let couponObj = response.activeCoupon
+                
+                //1.a) totalAmount is above min.spent,
+                if (totalAmount >= couponObj.minSpend) {
+                    //discount 
+                   let discount =   totalAmount * couponObj.couponDiscount / 100  
+                    
+                    //1.a.1)if discount exceeds the maxDiscount , we cut it to that limit
+                    if (discount > couponObj.maxAmount) {    /*((totalAmount + discount) > couponObj.maxAmount)*/
+                        discount = couponObj.maxAmount
+                    }
+                    let netTotalAmount = (totalAmount - discount)
+                    
+                    Swal.fire({
+                      icon: 'success',
+                      title: couponObj.couponDescription ,
+                      text: couponObj.couponDiscount + "% discount only up to " + couponObj.maxAmount + " with a min. spent of" + couponObj.minSpend,
+                      showConfirmButton: false,
+                      timer: 1500    
+                    })
+                  document.getElementById('discountAmount2').value = discount //discount amount is assigned to its value where before it was [value="0"], this discountAmount2 is the same as discountAmount below, difference is that this is an input field thats going to be posted
+
+                    document.getElementById('discountAmount').innerHTML = discount
+                    document.getElementById('netTotalAmount').innerHTML = netTotalAmount
+                    document.getElementById('removeCouponBtn').style.display = "block"
+                    document.getElementById('applyCouponBtn').style.display = "none"
+
+                    document.getElementById('couponErr').innerHTML = ""
+                    document.getElementById('couponValid').innerHTML = "Coupon valid"
+                        
+
+                    /*document.getElementById('couponErr').innerHTML = couponObj.couponDescription*/  //change status
+                    /*document.getElementById('offerDetail').innerHTML = couponObj.couponDiscount + "% up to " + couponObj.maxAmount + " on min Spend " + couponObj.minSpend*/
+                    
+                    
+                   
+                } 
+                //1.b)totalAmount is below minTotal
+                else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: "Coupon not applied",
+                        text: "You need to spend minimum " + couponObj.minSpend + " to avail this offer",
+                       
+                    })
+                    
+                    }
+              }
+            //2) invalid coupon
+             else {     
+                document.getElementById('couponErr').innerHTML = response.err
+            }
+        }
+    })
+
+}
+
+
+
+function removeCoupon() {
+  
+    document.getElementById('discountAmount').innerHTML = 0
+     document.getElementById('couponCode').value = ""
+   
+   
+   document.getElementById('couponValid').innerHTML = ""
+   document.getElementById('couponErr').innerHTML = "Coupon Removed"
+   //after 2 seconds it will be empty
+       window.setTimeout(function(){
+        document.getElementById('couponErr').innerHTML = ""
+        },2000);
+			
+
+
+    
+    document.getElementById('netTotalAmount').innerHTML = parseInt(document.getElementById('totalAmount2').innerHTML)
+    document.getElementById('removeCouponBtn').style.display = "none"
+    document.getElementById('applyCouponBtn').style.display = "block"
+    document.getElementById('discountAmount2').value = 0
+
+    /*document.getElementById('couponApplied').value = 0*/
+    /*document.getElementById('offerDetail').innerHTML = ""*/
+    /* document.getElementById('error').innerHTML = ""*/
+}
+
+ 
+		
+
+    ////////////////////////////////////////////////////////////////   CHECKOUT BUTTON   /////////////////////////////////////
+    
+$("#place-order-form").submit((e)=>{
+  e.preventDefault() // to prevent default submit
+  
+  $.ajax({
+    url:'/place-order',
+    method:'post',
+
+    data:$('#place-order-form').serialize(),  // serialize() is used to get all the info about the form
+    success:(response)=>{
+      
+      if(response.CODsuccess){
+        
+        location.href="/order-success" // order-success page
+
+      }
+       ///////
+       else if (response.pay) {
+       
+        location.replace(response.linkto)
+    }
+      ///////
+      // if online (razorpay) is chosen
+      else {
+         razorpayPayment(response)
+      }
+     
+    }
+  })
+});
+
+ function showPayWallet(){
+   document.getElementById("payWithWalletCheckbox").style.display = "block";
+ } 
+ function hidePayWallet(){
+   document.getElementById("payWithWalletCheckbox").style.display = "none";
+ }   
+
+    
+	</script>
+
+	
+	

@@ -1,0 +1,23 @@
+{{!-- <h1>{{message}}</h1>
+<h2>{{error.status}}</h2>
+<pre>{{error.stack}}</pre> --}}
+
+
+<div class="full-height-section error-section">
+			<div class="full-height-tablecell">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 offset-lg-2 text-center">
+							<div class="error-text">
+								<i class="far fa-sad-cry"></i>
+								<h1>Oops! Not Found.</h1>
+								<p>{{#if USERErr}} {{USERErr}}
+                  {{/if}}
+                </p>
+								<a href="/login" class="boxed-btn">Back to login</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
