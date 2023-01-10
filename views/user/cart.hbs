@@ -63,7 +63,7 @@
                   <td><span class="text-success">In Stock</span></td>
                {{/isGreater}}
 							 {{#isLesser this.final_slicedProduct.stock 5 0}} 
-									Only <td><span class="text-danger">{{../this.final_slicedProduct.stock}}</span> <span style="color: rgb(169,169,169);"> Left</span>  </td>				
+								<td><span class="text-danger">{{../this.final_slicedProduct.stock}}</span> <span style="color: rgb(169,169,169);"> Left</span>  </td>				
 							 {{/isLesser}}
 
 									<td > <span id="{{this.final_slicedProduct.prodName}}">{{this.final_slicedProduct.price}}</span></td>

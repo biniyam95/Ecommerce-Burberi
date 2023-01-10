@@ -51,13 +51,15 @@ module.exports={
 
   HOME:
   async(req, res)=>{
-     let monthSales= await adminHelper.getmonthlySales()
+    //make order status delivered for this to show the data
+     let dailySales=await adminHelper.getDailySales();
+     let monthlySales= await adminHelper.getmonthlySales()
      let categorySales= await adminHelper.categorySales()
      let transactionSales= await adminHelper.transactionSales()
      let topSales= await adminHelper.topSales()
      let dashCounts= await adminHelper.dashCounts()
 
-    res.render('admin/admin-home',{dashCounts,monthSales,categorySales,transactionSales,topSales,layout:'admin-layout'})
+    res.render('admin/admin-home',{dailySales,dashCounts,monthlySales,categorySales,transactionSales,topSales,layout:'admin-layout'})
   
 },
 

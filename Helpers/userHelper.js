@@ -218,7 +218,7 @@ module.exports = {
         .find()
         .toArray();
       console.log(fetchedCategory);
-      resolve(fetchedCategory);
+      resolve(fetchedCategory); 
     });
   },
 
@@ -233,7 +233,9 @@ module.exports = {
       prodName:prodDetails.prodName,
       categName:prodDetails.categName,
       price:prodDetails.price,
-      stock:prodDetails.stock
+      stock:prodDetails.stock,
+      prodImage:prodDetails.prodImage1
+
     };
     console.log(prodObj,"@@@@@@@")
 
@@ -1000,6 +1002,7 @@ getWallet: (userId) => {
 },
 
 stockCheck:(userId)=>{
+  let stockerr=null
   return new Promise(async (resolve, reject) => {
     //cart products are fetched based on their id from another collection
     let cartProducts = await db.get().collection(CollectionStore.CART_COLLECTION).aggregate([
@@ -1012,24 +1015,32 @@ stockCheck:(userId)=>{
         
       ])
       .toArray();
-   
-console.log(cartProducts,"uiuiui")
-console.log(cartProducts[0]?.finishProd.stock,"meiii&") //we use [0] because its coming as an object inside array
-console.log(cartProducts[0]?.quantity,"suiuiui")
+  console.log(cartProducts,"uiuiui")
+  
+  let lim= cartProducts.length
+  console.log(lim,"666")
 
-if(cartProducts[0]?.finishProd.stock === 0){
- stockerr="Remove out of stock item from cart"
- console.log(stockerr)
- resolve(stockerr)
-}
-else if(cartProducts[0]?.quantity > cartProducts[0]?.finishProd.stock){
-  stockerr=" Insufficient Stock"
-  console.log(stockerr)
-  resolve(stockerr)
-}
-else{
-  resolve()
-}   
+  for(i=0;i<lim;i++){
+    
+    console.log(cartProducts[i]?.finishProd.stock,"meiii&") //we use [0] because its coming as an object inside array
+    console.log(cartProducts[i]?.quantity,"suiuiui")
+    
+    if(cartProducts[i]?.finishProd.stock === 0){
+     stockerr="Remove out of stock item from cart"
+     console.log(stockerr,"999")
+     break;
+    }
+    else if(cartProducts[i]?.quantity > cartProducts[i]?.finishProd.stock){
+      stockerr=" Insufficient Stock"
+      console.log(stockerr,"888")
+      break;
+    }
+    else{
+      console.log("no stockcheck error")
+    } 
+  }
+  resolve(stockerr);
+  
   });
 },
 

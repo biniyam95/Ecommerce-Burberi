@@ -2,7 +2,7 @@
  * Dashboard Analytics
  */
 
-'use strict';
+/* 'use strict'; */
 
 (function () {
   let cardColor, headingColor, axisColor, shadeColor, borderColor;
@@ -425,7 +425,7 @@
 
   // Order Statistics Chart
   // --------------------------------------------------------------------
-  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
+   const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     orderChartConfig = {
       chart: {
         height: 165,
@@ -491,7 +491,7 @@
   if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
     const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
     statisticsChart.render();
-  }
+  } 
 
   // Income Chart - Area chart
   // --------------------------------------------------------------------
@@ -664,4 +664,14 @@
     const weeklyExpenses = new ApexCharts(weeklyExpensesEl, weeklyExpensesConfig);
     weeklyExpenses.render();
   }
-})();
+
+ 
+
+
+
+
+}
+)();
+
+
+ 

@@ -63,12 +63,12 @@
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    {{this.final_slicedProduct.prodName}} {{this.quantity}}
+                                                   {{this.quantity}} {{this.final_slicedProduct.prodName}} 
                                                 </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
                                                     <i
-                                                        class="bi bi-currency-rupee"></i>offerprice
+                                                        class="bi bi-currency-rupee"></i>{{this.final_slicedProduct.price}}
                                                 </td>
                                             </tr>
                                             {{/each}}

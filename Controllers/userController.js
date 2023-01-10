@@ -165,7 +165,8 @@ async (req, res) => {
 
 PLACE_ORDER:
 async (req, res) => {
-  let stockErr =await userHelper.stockCheck(req.session.member._id)
+  
+  let stockErr= await userHelper.stockCheck(req.session.member._id)
   let totalAmount = await userHelper.getTotalAmount(req.session.member._id);
    let allProfile= await userHelper.getProfile(req.session.member._id); /* user address details */
    res.render("user/place-order", {wishCount:req.session.wishCount, cartCount : req.session.cartCount,totalAmount, allProfile,totalAmount,USERid: req.session.member._id,LoggedIN: req.session.loggedIn,}); //all datas passed in the checkout or place order page
@@ -384,10 +385,12 @@ LOGOUT:
 (req, res) => {
   req.session.member = null;
   req.session.loggedIn = false;
+  req.session.wishCount = null;
+  req.session.cartCount = null
   console.log(req.session.returnTo,'000000')
    delete req.session.returnTo;  // this is for when you logout from profile page and you then try to login to homepage you somehow end up routing to the last page before logout that is profile page  
   console.log("session destroyed");
-  console.log(req.session);
+  console.log(req.session,"loggogout");
   res.redirect("/"); //back to landing page
 },
 

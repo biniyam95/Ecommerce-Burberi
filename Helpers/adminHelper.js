@@ -56,6 +56,9 @@ module.exports={
   addProduct:(bodyContent)=>{
     bodyContent.stock=parseInt(bodyContent.stock)
     bodyContent.price=parseInt(bodyContent.price)
+    bodyContent.actualPrice=parseInt(bodyContent.actualPrice)
+    bodyContent.wholePrice=parseInt(bodyContent.wholePrice)
+    bodyContent.isTopSale=false
     bodyContent.isWished=false
     return new Promise(async(resolve,reject)=>{
       db.get().collection(CollectionStore.PRODUCT_COLLECTION).insertOne(bodyContent).then((data)=>{
@@ -112,8 +115,7 @@ module.exports={
     console.log('9999999999999999999999999999999999999999');
          return new Promise(async(resolve,reject)=>{
           await db.get().collection(CollectionStore.PRODUCT_COLLECTION).updateOne({_id:ObjectId(prodId)},
-          {  
-          $set: {
+          {  $set: {
             prodImage1:bodyContent.prodImage1,
             prodImage2:bodyContent.prodImage2,
             prodImage3:bodyContent.prodImage3,
@@ -122,7 +124,10 @@ module.exports={
             prodName:bodyContent.prodName,
             categName:bodyContent.categName,
             price:parseInt(bodyContent.price), // somehow when updating number becomes string , so we need to convert to number
-            stock:parseInt(bodyContent.stock)
+            stock:parseInt(bodyContent.stock),
+            actualPrice:parseInt(bodyContent.actualPrice),
+            wholePrice:parseInt(bodyContent.wholePrice),
+
 
           }})
           resolve()
@@ -382,7 +387,77 @@ transactionSales:()=>{
 
 },
 
-topSales:()=>{
+/* topSales: () => {
+  return new Promise(async (resolve, reject) => {
+      const top5 = await db.get().collection(collection.ORDER_COLLECTION)
+          .aggregate([
+              {
+                  $project: {
+                      _id: 0,
+                      cartDetails: 1
+                  }
+              },
+              {
+                  $unwind: '$orderedProducts'
+              },
+              {
+                  $project: {
+                      image1: '$orderedProducts.product.image1',
+                      quantity: '$orderedProducts.quantity',
+                      salesTotal: '$orderedProducts.productTotal',
+                      item: "$orderedProducts.product.title",
+                      actualPrice: '$orderedProducts.product.costPrice',
+                      profit: { $subtract: ["$salesTotal", { $multiply: ['$quantity', '$actualPrice'] }] }
+                  }
+              },
+              {
+                  $addFields: {
+                      profit: { $subtract: ["$salesTotal", { $multiply: ['$quantity', '$actualPrice'] }] }
+                  }
+              },
+              {
+                  $group: {
+                      _id: '$item',
+                      SalesQty: { $sum: '$quantity' },
+                      Revenue: { $sum: '$salesTotal' },
+                      profit: { $sum: '$profit' }
+                  }
+              },
+              {
+                  $lookup: {
+                      from: 'product',
+                      localField: '_id',
+                      foreignField: 'title',
+                      as: 'product'
+                  }
+              },
+              {
+                  $unwind: '$product'
+
+              },
+              {
+                  $project: {
+                      _id: 1,
+                      SalesQty: 1,
+                      Revenue: 1,
+                      profit: 1,
+                      image1: '$product.image1'
+
+                  }
+              },
+              {
+                  $sort: { SalesQty: -1 }
+              },
+              {
+                  $limit: 5
+              }
+
+          ]).toArray()
+      resolve(top5)
+  })
+}, */
+
+ topSales:()=>{
   return new Promise(async (resolve, reject) => {
     let topSales =await db.get().collection(CollectionStore.ORDER_COLLECTION).aggregate([
       { $match:{ Orderstatus:  { $in:["delivered"] }}},
@@ -394,9 +469,12 @@ topSales:()=>{
         totalRevenue:  { $sum: '$netTotalAmount' },
         category:      { $push:'$orderedProducts.categName'},
         price:         { $push:'$orderedProducts.price'},
+        productId:     { $push:'$orderedProducts.prodItem'}, 
+        prodImage:     { $push:'$orderedProducts.prodImage'},
 
       }},
-      {$project:{_id:0,product:'$_id',totalQty:1,totalRevenue:1,category:{$arrayElemAt:["$category",0]}, price:{$arrayElemAt:["$price",0]}}},
+      {$project:{_id:0,product:'$_id',totalQty:1,totalRevenue:1,category:{$arrayElemAt:["$category",0]}, price:{$arrayElemAt:["$price",0]},productId:{$arrayElemAt:["$productId",0]}, prodImage:{$arrayElemAt:["$prodImage",0]}}},
+      {$project:{_id:0,product:1,totalQty:1,totalRevenue:1,category:1, price:1,productId: {$toString:"$productId"},prodImage:1 }},
       {$sort:{totalQty:-1}},
       {$limit:3}
     ]).toArray()
@@ -405,9 +483,27 @@ topSales:()=>{
     resolve(topSales)
   })
 
+}, 
+
+//////////////////////////////////////////////////////////////  MAIN CHARTS (DASH) /////////////////////////////////////////////////////////////
+
+getDailySales:()=>{
+  return new Promise(async(resolve,reject)=>{
+      let dailySales=await db.get().collection(CollectionStore.ORDER_COLLECTION).aggregate([
+        { $project: { dateOfOrder: 1, netTotalAmount: 1 }},
+       
+        { $group:{
+            _id: {$dateToString: {format: "%Y-%m-%d",date:"$date"}},
+            netTotalAmount: { $sum: '$netTotalAmount' },
+            count: { $sum: 1 }
+          }},
+
+        {$sort:{_id:1}},
+        { $limit:7 }
+      ]).toArray()
+      resolve(dailySales)
+  })
 },
-
-
 
 getmonthlySales:()=>{
   return new Promise(async (resolve, reject) => {
@@ -492,6 +588,8 @@ getReportbyDate:(DateRange)=>{
     resolve(salesReport);
   })
 },
+
+
 
 //////////////////////////////////////////////////////////////  COUPON /////////////////////////////////////////////////////////////
 

@@ -77,7 +77,7 @@
 
                         {{!-- price --}}
                         <div class="row mb-3">
-                          <label class="col-sm-3 text-info" for="">Price</label>
+                          <label class="col-sm-3 text-info" for="">Price</label>{{!-- price will become offer price --}}
                           <div class="col-sm-9">
                             <input type="number" class="form-control" name="price" id="price" placeholder=""/>
                           </div>
@@ -91,6 +91,21 @@
                             <input type="number" class="form-control" name="stock" id="stock" placeholder=""/>
                           </div>
                         </div>
+
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">Actual Price</label>{{!-- without offer --}}
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="actualPrice" id="actualPrice" placeholder=""/>
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label class="col-sm-3 text-info" for="">WholeSale price</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" name="wholePrice" id="wholePrice" placeholder=""/>
+                          </div>
+                        </div>
+                        
 
                         {{!-- submit --}}
                         <div class="row justify-content-center">

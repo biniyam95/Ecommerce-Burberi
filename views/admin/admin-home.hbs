@@ -1,458 +1,399 @@
 
-  <div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/admin/dash">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
+            <!-- Content -->
 
-  <section class="section dashboard">
-    <div class="row">
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-lg-8 mb-4 order-0">
+                  
+                    {{!--5454  --}}
+                    <div class="row">
+                    <div class="col-lg-4 col-md-12 col-4 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                               <img src="../../admin-asset/assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                            </div> 
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Revenue</span>
+                          <h3 class="card-title mb-2">&#8377; {{dashCounts.totalRevenue}}</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                        </div>
+                      </div>
+                    </div>
 
-      <!-- Left side columns -->
-      <div class="col-lg-8">
-        <div class="row">
+                    <div class="col-lg-4 col-md-12 col-4 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../../admin-asset/assets/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded"/>
+                            </div>
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Sales</span>
+                          <h3 class="card-title mb-2">{{dashCounts.totalOrders}}</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
+                        </div>
+                      </div>
+                    </div>
 
-          <!-- Sales Card -->
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Sales <span>| This Year</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{dashCounts.totalOrders}}</h6>
+                    <div class="col-lg-4 col-md-12 col-4 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../../admin-asset/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                            </div>
+                          </div>
+                          <span class="d-block mb-1">Users</span>
+                          <h3 class="card-title text-nowrap mb-2">{{dashCounts.totalUsers}}</h3>
+                          <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
+                        </div>
+                      </div>
+                    </div>
                     
-                      <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +5%</small>
+                  </div>
+                    {{!--5454  --}}
+                  {{!-- </div> --}}
+                </div>
+                
+                <div class="col-lg-4 col-md-4 order-1">
+                  <div class="row">
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+                <!-- Total Revenue -->
+                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                    <div class="row row-bordered g-0">
+                      <div class="col-md-7">
+                        <h5 class="card-header m-0 me-2 pb-3">Monthly Revenue</h5>
+                        <div class="px-2 mb-5"> <canvas id="monthlySales" class="px-2"></canvas></div>
 
+                      </div>
+                      <div class="col-md-5">
+                     <h5 class="card-header m-0 me-2 pb-4 pt-3">Daily Revenue</h5>
+                        <div class="px-2 mb-5"> <canvas id="dailySales" class="px-2"></canvas></div>
+
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <!--/ Total Revenue -->
+                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                  <div class="row">
+                    <div class="col-12 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                         <h5 class="card-title mb-2 mt-3 ">Top Selling (<span class="text-success">3</span>)</h5>
+                            {{#each topSales}}
+                            <div class="row">
+                              {{!-- <img src="/images/product-img/{{this.image1}}" alt=""> --}}
+                             <div class="col-6 mt-5">
+                              <h5 class="text-info mb-0">{{this.product}}</h5>
+                              </div>
+                              <div class="col-6 mt-5">
+                                <span class="fw-semibold text-muted">Sales:   {{this.totalQty}} Qty</span><br>
+                                <span class="fw-semibold text-muted">Revenue: &#8377; {{this.totalRevenue}}</span> <br>
+                               {{!-- <span class="mb-4">Profit: 898$</span> --}}
+                              </div>
+                              
+                            </div>
+                            {{/each}}
+            
+                        </div>
+                      </div>
+                    </div>
+                    {{!-- <div class="col-6 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../../admin-asset/assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                            </div>
+                            
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Transactions</span>
+                          <h3 class="card-title mb-2">{{transactionSales.totalRevenue}}</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
+                        </div>
+                      </div>
+                    </div> --}}
+                    
+    
+                    {{!-- <div class="col-12 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                            <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                              <div class="card-title">
+                                <h5 class="text-nowrap mb-2">Profile Report</h5>
+                                <span class="badge bg-label-warning rounded-pill">Year 2021</span>
+                              </div>
+                              <div class="mt-sm-auto">
+                                <small class="text-success text-nowrap fw-semibold"
+                                  ><i class="bx bx-chevron-up"></i> 68.2%</small
+                                >
+                                <h3 class="mb-0">$84,686k</h3>
+                              </div>
+                            </div>
+                            <div id="profileReportChart"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> --}}
                   </div>
                 </div>
               </div>
-
-            </div>
-          </div><!-- End Sales Card -->
-
-          <!-- Revenue Card -->
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Revenue <span>| This Year</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6 style="font-size: 22px;"> <i class="bi bi-currency-rupee"></i>{{dashCounts.totalRevenue}}</h6>
-                    <span class="text-success small pt-1 fw-bold">8%</span> <span
-                      class="text-muted small pt-2 ps-1">increase</span>
-
+              <div class="row">
+                <!-- Order Statistics -->
+                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                      <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Order Statistics</h5>
+                        <small class="text-muted">42.82k Total Sales</small>
+                      </div>
+                     
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        
+                        {{!-- <div id="orderStatisticsChart2"></div> --}}
+                                            <div>
+                      <canvas id="categoryChart"></canvas>
+                    </div>
+                      </div>
+                      
+                    </div>
                   </div>
                 </div>
-              </div>
+                <!--/ Order Statistics -->
 
-            </div>
-          </div><!-- End Revenue Card -->
-
-          <!-- Customers Card -->
-          <div class="col-xxl-4 col-xl-12">
-
-            <div class="card info-card customers-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Users <span>| This Year</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{dashCounts.totalUsers}}</h6>
-                   <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> 14%</small>
-
-
+                <!-- Expense Overview -->
+                <div class="col-md-6 col-lg-4 order-1 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header">
+                       <h5 class="m-0 me-2">Category Sales</h5>
+                    </div>
+                    <div class="card-body">
+                      
+                      <ul class="p-0 m-0">
+                        {{#each categorySales}} 
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-primary"
+                              ><i class="bx bx-mobile-alt"></i
+                            ></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">{{this.category}}</h6>
+                              <small class="text-muted"></small>
+                            </div>
+                            <div class="user-progress">
+                              <small class="fw-semibold">&#8377; {{this.totalRevenue}}</small>
+                            </div>
+                          </div>
+                        </li>
+                         {{/each}}
+                      </ul>
+                    </div>
+                    
                   </div>
                 </div>
+                <!--/ Expense Overview -->
 
+                <!-- Transactions -->
+                <div class="col-md-6 col-lg-4 order-2 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h5 class="card-title m-0 me-2">Transactions</h5>
+                      
+                    </div>
+                    <div class="card-body">
+                      <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <img src="../../admin-asset/assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Paypal</small>
+                              <h6 class="mb-0">Online</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <span class="text-muted">x</span>
+                              <h6 class="mb-0">{{ dashCounts.PayPalCount }}</h6>
+                              
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <img src="../../admin-asset/assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">RazorPay</small>
+                              <h6 class="mb-0">Online</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <span class="text-muted">x</span>
+                              <h6 class="mb-0">{{ dashCounts.RazorpayCount }}</h6>
+                              
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <img src="../../admin-asset/assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">COD</small>
+                              <h6 class="mb-0">Offline</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                             <span class="text-muted">x</span>
+                              <h6 class="mb-0">{{ dashCounts.CODCount}}</h6>
+                              
+                            </div>
+                          </div>
+                        </li>
+                        
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <img src="../../admin-asset/assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">PayWallet</small>
+                              <h6 class="mb-0">online</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <span class="text-muted">x</span>
+                              <h6 class="mb-0">0</h6>
+                              
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <img src="../../admin-asset/assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded" />
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Mastercard</small>
+                              <h6 class="mb-0">Ordered Food</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <span class="text-muted">x</span>
+                              <h6 class="mb-0">0</h6>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Transactions -->
               </div>
             </div>
+            <!-- / Content -->
 
-          </div><!-- End Customers Card -->
 
+    
+
+
+
+
+
+<script>
+    //------------------------CATEGORY WISE DONUT CHART---------------------
+console.log("hhfhfuuuuud")
+      const donut = document.getElementById('categoryChart').getContext('2d');
+      
      
+      const categories = []
+                  {{#each categorySales}}
+                  categories.unshift('{{this.category}}')
+                  {{/each}}
+                  console.log("hhfhfuuuuud")
 
-          <!-- Reports -->
-          <div class="col-12">
-            <div class="card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  {{!-- <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li> --}}
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Reports <span>/Monthly</span></h5>
-
-                <!-- Line Chart -->
-                <div id="reportsChart"></div>
-
-
-                <script>
-                                        //Seperating datas into seperate array of months and revenue//
-                  const month = []
-                  {{#each monthSales}}
-                  month.unshift('{{this.month}}')
+      const sold = []
+                  {{#each categorySales}}
+                  sold.unshift('{{this.totalquantity}}')
+                  {{/each}}
+      
+ 
+      new Chart(donut,{
+        type: 'doughnut',
+        data: {
+        labels: categories,
+        datasets: [
+        {
+          label: 'Item sold',
+          data: sold,
+        },
+      ],
+	},
+      })
+  </script>
+          
+   {{!-- dailysales --}}       
+          <script>
+           
+   const label1 = []
+                  {{#each dailySales}}
+                  label1.unshift('{{_id}}')
                   {{/each}}
 
-                  const monthlyRevenue = []
-                  {{#each monthSales}}
-                  monthlyRevenue.unshift('{{this.Revenue}}')
+   const daily1=[]
+                {{#each dailySales}}
+                  daily1.unshift('{{netTotalAmount}}')
                   {{/each}}
 
-                  /*const couponApplied = []
-                  {{#each monthSales}}
-                  couponApplied.unshift('{{this.profit}}')
-                  {{/each}} */
 
-                  const netAmountPaid = []
-                  {{#each monthSales}}
-                  netAmountPaid.unshift('{{this.sales}}')
-                  {{/each}} 
+  const data1 = {
+    labels: label1,
+    datasets: [{
+      label: 'Revenue',
+      backgroundColor: '#409456',
+      borderColor: '#409456',
+      data:daily1 
+    }]
+  };
 
-                  //----------------------------------------------------------//
-
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new ApexCharts(document.querySelector("#reportsChart"), {
-
-                      series: [{
-                        name: 'Revenue',
-                        data: monthlyRevenue,
-                      }, {
-                        name: 'profit',
-                        data: couponApplied
-                      }, {
-                        name: 'sales',
-                        data: netAmountPaid
-                      }],
-                      chart: {
-                        height: 350,
-                        type: 'area',
-                        toolbar: {
-                          show: false
-                        },
-                      },
-                      markers: {
-                        size: 4
-                      },
-                      colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                      fill: {
-                        type: "gradient",
-                        gradient: {
-                          shadeIntensity: 1,
-                          opacityFrom: 0.3,
-                          opacityTo: 0.4,
-                          stops: [0, 90, 100]
-                        }
-                      },
-                      dataLabels: {
-                        enabled: false
-                      },
-                      stroke: {
-                        curve: 'smooth',
-                        width: 2
-                      },
-                      xaxis: {
-                        type: 'month',
-                        categories: month
-                      },
-                      tooltip: {
-                        x: {
-                          format: 'dd/MM/yy HH:mm'
-                        },
-                      }
-                    }).render();
-                  });
-                  //--------------------------------------------------------//
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new ApexCharts(document.querySelector("#reportsChart"), {
-
-                      series: [{
-                        name: 'sales',
-                        data: netAmountPaid,
-                      }],
-                      chart: {
-                        height: 350,
-                        type: 'area',
-                        toolbar: {
-                          show: false
-                        },
-                      },
-                      markers: {
-                        size: 4
-                      },
-                      colors: ['#ff771d'],
-                      fill: {
-                        type: "gradient",
-                        gradient: {
-                          shadeIntensity: 1,
-                          opacityFrom: 0.3,
-                          opacityTo: 0.4,
-                          stops: [0, 90, 100]
-                        }
-                      },
-                      dataLabels: {
-                        enabled: false
-                      },
-                      stroke: {
-                        curve: 'smooth',
-                        width: 2
-                      },
-                      xaxis: {
-                        type: 'month',
-                        categories: month
-                      },
-                    }).render();
-                  });
-                </script>
-                <!-- End Line Chart -->
-
-              </div>
-
-            </div>
-          </div><!-- End Reports -->
+  const config1 = {
+    type: 'bar',
+    data: data1,
+    options: {}
+  };
+            const myChart1 = new Chart(
+    document.getElementById('dailySales'),
+    config1
+  );
+          </script>
 
 
-          
-          
-
-          <!-- Recent Sales -->
-          <div class="col-12">
-            <div class="card recent-sales overflow-auto">
-
-              <div class="filter">
-                <a class="icon" href="/admin/viewOrders" data-bs-toggle="">View more</i></a>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Recent Sales <span>5</span></h5>
-
-                <table class="table table-borderless ">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Customer</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Bill</th>
-                      <th scope="col">Payment</th>
-                      <th scope="col">View</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    {{#each OrderHistory}}
-                    <tr>
-                      <td class="create_index"></td>
-                      <td><a href="/admin/view-users">{{this.userDetails.UserName}}</a></td>
-                      <td>{{this.deliveryDetails.State}} {{this.deliveryDetails.PostCode}}</td>
-                      <td><i class="bi bi-currency-rupee"></i>{{this.totalAmount}}</td>
-                      <td>{{this.payment_method}}</td>
-                      {{!-- <td>{{this.status}}</td> --}}
-                      <td><a href="/admin/viewOrdersDetails/{{this._id}}" class="view" title="View Details"
-                          data-toggle="tooltip"><i class="bi bi-eye"></i></a></td>
-                    </tr>
-                    {{/each}}
-
-                  </tbody>
-                </table>
-
-              </div>
-
-            </div>
-          </div><!-- End Recent Sales -->
-
-          
-
-        </div>
-      </div><!-- End Left side columns -->
-
-      <!-- Right side columns -->
-      <div class="col-lg-4">
-
-        <!-- News & Updates Traffic -->
-        <div class="card">
-          <div class="filter">
-            <a class="icon" href="/admin/view_Sales_Report" data-bs-toggle="">View more</i></a>
-          </div>
-
-          <div class="card-body pb-0">
-            <h5 class="card-title">Top Selling (3)<span></span></h5>
-
-            <div class="news">
-              {{#each topSales}}
-              <div class="post-item clearfix">
-                {{!-- <img src="/images/product-img/{{this.image1}}" alt=""> --}}
-
-                <h4 class="mb-0"><a href="#">{{this.product}}</a></h4>
-                <span>Sales:   {{this.totalQty}} Qty</span><br>
-                <span>Revenue: &#8377; {{this.totalRevenue}}</span> <br>
-                <span class="mb-4">Profit: 898$</span>
-
-
-              </div>
-              {{/each}}
-
-             {{!--  {{#each topSales}}
-              <div class="post-item clearfix">
-                <img src="/images/product-img/1670063165870--product-img-1" alt="">
-                <h4><a href="#">{{this.product}}</a></h4>
-                <span>Sales: {{this.totalQty}}</span>
-                <span>Revenue:{{this.totalRevenue}}</span> <br>
-                <span>Profit: 454$</span>
-              </div>
-              {{/each}} --}}
-
-
-
-            </div><!-- End sidebar recent posts-->
-
-          </div>
-        </div><!-- End News & Updates -->
-
-        <!-- Payment Traffic -->
-        <div class="card">
-          <div class="card-body pb-0">
-            <h5 class="card-title">Payment Trend </h5>
-            <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-            <script>
-              document.addEventListener("DOMContentLoaded", () => {
-                echarts.init(document.querySelector("#trafficChart")).setOption({
-                  tooltip: {
-                    trigger: 'item'
-                  },
-                  legend: {
-                    top: '5%',
-                    left: 'center'
-                  },
-                  series: [{
-                    name: 'Access From',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
-                    avoidLabelOverlap: false,
-                    label: {
-                      show: false,
-                      position: 'center'
-                    },
-                    emphasis: {
-                      label: {
-                        show: true,
-                        fontSize: '18',
-                        fontWeight: 'bold'
-                      }
-                    },
-                    labelLine: {
-                      show: false
-                    },
-                    data: [{
-                      value: {{ dashCounts.CODCount }},
-                    name: 'COD'
-                        },
-                  {
-                    value: {{ dashCounts.RazorpayCount }},
-                name: 'RazorPay'
-                        },
-                {
-                  value: {{ dashCounts.PayPalCount }},
-                name: 'PayPal'
-                        }
-
-                      ]
-                    }]
-                  });
-                });
-            </script>
-
-          </div>
-        </div><!-- End Payment Traffic -->
-
-
-        
-
-
-
-      </div><!-- End Right side columns -->
-
-    </div>
-  </section>
-
-  <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-  <script>
-  
+{{!-- monthlysales --}}       
+    <script>
+      //const monthlySales = document.getElementById('monthlySales').getContext('2d');
                       //Seperating datas into seperate array of months and revenue//
                   const month = []
-                  {{#each monthSales}}
+                  {{#each monthlySales}}
                   month.unshift('{{this.month}}')
                   {{/each}}
 
-                  const monthlyRevenue = []
-                  {{#each monthlygraph}}
-                  monthlyRevenue.unshift('{{this.netTotalAmount}}')
-                  console.log(monthlyRevenue,'monnnnnnnnnnnnnnnnnnn')
+                  const Revenue = []
+                  {{#each monthlySales}}
+                  Revenue.unshift('{{this.netTotalAmount}}')
+                  console.log(monthlySales,'monnnnnnnnnnnnnnnnnnn')
                   {{/each}} 
 
                   //----------------------------------------------------------//
@@ -460,26 +401,26 @@
 
     var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
     var yValues = [30, 49, 44, 24, 15];
-    var barColors = ["red", "green", "blue", "orange", "brown","red", "green", "blue", "orange", "brown"];
+    var barColors = [ "brown"];
 
-    new Chart("myChart", {
+ 
+    new Chart("monthlySales", {
       type: "bar",
       data: {
         labels: month,
         datasets: [{
           backgroundColor: barColors,
-          data: monthlyRevenue
+          data: Revenue
         }]
       },
       options: {
         legend: { display: false },
         title: {
           display: true,
-          text: "World Wine Production 2018"
+          text: "Burberi Sales 2023"
         }
       }
     });
   </script>
-
-
-
+          
+          

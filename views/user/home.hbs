@@ -1,3 +1,19 @@
+<style>
+.product-grid:hover .product-image .img-2{ opacity: 1; }
+.product-grid .product-hot-label,
+.product-grid .product-discount-label{
+color: #fff;
+background: rgb(184, 105, 148); /*price bg color*/
+font-size: 12px;
+font-weight: 600;
+text-transform: uppercase;
+padding: 3px 10px;
+position: absolute;
+top: 10px;
+left: 10px;
+
+}
+</style>
 {{!-- <!-- search area -->
 	<div class="search-area">
 		<div class="container">
@@ -77,48 +93,34 @@
 	<!-- end features list section -->
 
   <!-- product section -->
-	<div class="product-section mt-150 mb-150">
+	<div class="product-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
 						<h3><span class="orange-text">Our</span> Products</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+						<p class="fw-bolder">The Quality We Offer Never Dissapoints because It Matters To Us And We dont compromise on that !</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
+				{{#each topSales}}
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="../../user-asset/assets/img/products/product-img-1.jpg" alt=""></a>
+							<a href="/single-product?id={{this.productId}}"><img src="/product-images/{{this.prodImage}}" alt=""></a>
+							
 						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<h3>{{this.product}}</h3>
+						<button style="background-color:rgb(184, 105, 148);border-style:none;"><span style="font-weight: 700; color:rgb(255, 255, 255);">Hot Sale</span></button>
+
+						<p class="product-price"><span>Per Kg</span>&#8377; {{this.price}} </p>
+						<button onclick="addToCartFun( '{{this.productId}}')" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="../../user-asset/assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="../../user-asset/assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				{{/each}}
+				
 			</div>
 		</div>
 	</div>
